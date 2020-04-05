@@ -1,0 +1,31 @@
+language: python
+cache: pip
+python:
+  - "2.7"
+  - "3.4"
+  - "3.5"
+  - "3.6"
+  - "3.7"
+  - "3.8"
+env:
+  global:
+    LD_PRELOAD=/lib/x86_64-linux-gnu/libSegFault.so
+before_install:
+  - python --version
+  - uname -a
+  - lsb_release -a
+install:
+  - pip install -U pytest pytest-cov codecov coveralls
+  - pip install tox-travis
+  - pip install scrutinizer-ocular
+  - pip install -e ".[all]"
+script:
+  - py.test -v --doctest-glob='*.md' --cov src
+after_success:
+  - codecov
+  - coveralls
+  - ocular --data-file ".coverage"
+notifications:
+  email:
+    on_success: never
+    on_failure: always
