@@ -1,0 +1,7 @@
+graft src
+graft tests
+
+include COPYING*
+include *.md
+
+global-exclude *.py[cod] __pycache__ *.so *.dylib *.git *.swp
