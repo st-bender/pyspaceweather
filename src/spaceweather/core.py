@@ -28,6 +28,20 @@ def _dl_file(swfile):
 				fd.write(chunk)
 
 
+def _get_last_update(swpath):
+	for line in open(swpath):
+		if line.startswith("UPDATED"):
+			# closes the file automatically
+			break
+	return pd.to_datetime(line.lstrip("UPDATED"), utc=True)
+
+
+def check_for_update(swpath, max_age="30days"):
+	last_update = _get_last_update(swpath)
+	file_age = pd.Timestamp.utcnow() - last_update
+	return file_age > pd.Timedelta(max_age)
+
+
 def _read_sw(swpath):
 	kpns = ["Kp{0}".format(i) for i in range(0, 23, 3)] + ["Kpsum"]
 	sw = np.genfromtxt(
@@ -54,12 +68,15 @@ def _read_sw(swpath):
 	return sw_df
 
 
-def sw_daily(swfile=SW_FILE):
+def sw_daily(swfile=SW_FILE, update_interval="30days"):
 	"""Daily Ap, Kp, and f10.7 index values
 	"""
-	# ensure the file exists
-	swpath = resource_filename("spaceweather", os.path.join("data", swfile))
-	if not os.path.exists(swpath):
+	swpath = resource_filename(__name__, os.path.join("data", swfile))
+	# ensure that the file exists and is up to date
+	if (
+		not os.path.exists(swpath)
+		or check_for_update(swpath, max_age=update_interval)
+	):
 		_dl_file(swpath)
 	return _read_sw(swpath)
 
