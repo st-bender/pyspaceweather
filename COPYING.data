@@ -1,0 +1,7 @@
+You are more than welcome to include the data in your package. Note that we update the data every 3 hours, but perhaps the work you are doing does not require the very latest data. As long as users do not query more often than once every 3 hours, there should be no problem. And I would recommend using the https://celestrak.com/SpaceData/SW-Last5Years.txt file, since the earlier data in the larger file will not change.
+
+There are no licensing requirements. I would only ask that you include the URL in your documentation so that others might be able to find the data and associated documentation.  - TS
+
+Dr. T.S. Kelso
+CelesTrak, https://celestrak.com
+E-Mail: ts.kelso@celestrak.com<mailto:ts.kelso@celestrak.com>
