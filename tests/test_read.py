@@ -16,6 +16,16 @@ import pandas as pd
 from spaceweather import ap_kp_3h, sw_daily
 
 
+def test_update():
+	import os
+	from pkg_resources import resource_filename
+	from spaceweather.core import check_for_update, _get_last_update, SW_FILE
+	swpath = resource_filename("spaceweather", os.path.join("data", SW_FILE))
+	fdate = _get_last_update(swpath)
+	now = pd.Timestamp.utcnow()
+	assert (now - fdate > pd.Timedelta("1d")) == check_for_update(swpath, max_age="1d")
+
+
 def test_daily():
 	df = sw_daily()
 	np.testing.assert_allclose(
