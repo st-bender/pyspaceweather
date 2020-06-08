@@ -10,20 +10,33 @@
 # See accompanying COPYING.GPLv2 file or http://www.gnu.org/licenses/gpl-2.0.html.
 """Space weather index read tests
 """
+import os
+
 import numpy as np
 import pandas as pd
 
-from spaceweather import ap_kp_3h, sw_daily
+from spaceweather import (
+	ap_kp_3h, sw_daily, get_file_age, update_data,
+	SW_PATH_ALL, SW_PATH_5Y,
+)
+
+
+def test_age():
+	now = pd.Timestamp.utcnow()
+	for p in [SW_PATH_ALL, SW_PATH_5Y]:
+		assert os.path.exists(p)
+		fage0 = get_file_age(p)
+		fage1 = now - get_file_age(p, relative=False)
+		assert (fage0 > pd.Timedelta("3h")) == (fage1 > pd.Timedelta("3h"))
+		assert (fage0 > pd.Timedelta("1d")) == (fage1 > pd.Timedelta("1d"))
 
 
 def test_update():
-	import os
-	from pkg_resources import resource_filename
-	from spaceweather.core import check_for_update, _get_last_update, SW_FILE
-	swpath = resource_filename("spaceweather", os.path.join("data", SW_FILE))
-	fdate = _get_last_update(swpath)
-	now = pd.Timestamp.utcnow()
-	assert (now - fdate > pd.Timedelta("1d")) == check_for_update(swpath, max_age="1d")
+	update_data(min_age="100d")
+	for p in [SW_PATH_ALL, SW_PATH_5Y]:
+		assert os.path.exists(p)
+		fage = get_file_age(p)
+		assert fage < pd.Timedelta("100d")
 
 
 def test_daily():

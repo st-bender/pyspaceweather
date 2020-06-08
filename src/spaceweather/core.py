@@ -11,38 +11,68 @@
 import os
 from pkg_resources import resource_filename
 import requests
+import logging
+from warnings import warn
 
 import numpy as np
 import pandas as pd
 
-__all__ = ["sw_daily", "ap_kp_3h"]
+__all__ = [
+	"sw_daily", "ap_kp_3h", "read_sw",
+	"get_file_age", "update_data",
+	"SW_PATH_ALL", "SW_PATH_5Y",
+]
 
-DL_URL = "https://celestrak.com/SpaceData/SW-All.txt"
-SW_FILE = "SW-All.txt"
+DL_URL_ALL = "https://celestrak.com/SpaceData/SW-All.txt"
+DL_URL_5Y = "https://celestrak.com/SpaceData/SW-Last5Years.txt"
+SW_FILE_ALL = os.path.basename(DL_URL_ALL)
+SW_FILE_5Y = os.path.basename(DL_URL_5Y)
+SW_PATH_ALL = resource_filename(__name__, os.path.join("data", SW_FILE_ALL))
+SW_PATH_5Y = resource_filename(__name__, os.path.join("data", SW_FILE_5Y))
 
 
-def _dl_file(swfile):
-	with requests.get(DL_URL, stream=True) as r:
-		with open(swfile, 'wb') as fd:
+def _dl_file(swpath, url=DL_URL_ALL):
+	with requests.get(url, stream=True) as r:
+		with open(swpath, 'wb') as fd:
 			for chunk in r.iter_content(chunk_size=1024):
 				fd.write(chunk)
 
 
-def _get_last_update(swpath):
+def get_file_age(swpath, relative=True):
 	for line in open(swpath):
 		if line.startswith("UPDATED"):
 			# closes the file automatically
 			break
-	return pd.to_datetime(line.lstrip("UPDATED"), utc=True)
+	upd = pd.to_datetime(line.lstrip("UPDATED"), utc=True)
+	if relative:
+		return pd.Timestamp.utcnow() - upd
+	return upd
 
 
-def check_for_update(swpath, max_age="30days"):
-	last_update = _get_last_update(swpath)
-	file_age = pd.Timestamp.utcnow() - last_update
-	return file_age > pd.Timedelta(max_age)
+def update_data(
+	min_age="3h",
+	swpath_all=SW_PATH_ALL, swpath_5y=SW_PATH_5Y,
+	url_all=DL_URL_ALL, url_5y=DL_URL_5Y,
+):
+	def _update_file(swpath, url, min_age):
+		if not os.path.exists(swpath):
+			logging.info("{0} not found, downloading.".format(swpath))
+			_dl_file(swpath, url)
+			return
+		if get_file_age(swpath) < pd.Timedelta(min_age):
+			logging.info("not updating '{0}'.".format(swpath))
+			return
+		logging.info("updating '{0}'.".format(swpath))
+		_dl_file(swpath, url)
+
+	# Update the large file after four years
+	# to have some overlap with the 5-year data
+	_update_file(swpath_all, url_all, "4y")
+	# Don't re-download before `min_age` has passed (3h)
+	_update_file(swpath_5y, url_5y, min_age)
 
 
-def _read_sw(swpath):
+def read_sw(swpath):
 	kpns = ["Kp{0}".format(i) for i in range(0, 23, 3)] + ["Kpsum"]
 	sw = np.genfromtxt(
 		swpath,
@@ -68,23 +98,34 @@ def _read_sw(swpath):
 	return sw_df
 
 
-def sw_daily(swfile=SW_FILE, update_interval="30days"):
+def sw_daily(swpath_all=SW_PATH_ALL, swpath_5y=SW_PATH_5Y, update_interval="30days"):
 	"""Daily Ap, Kp, and f10.7 index values
 	"""
-	swpath = resource_filename(__name__, os.path.join("data", swfile))
 	# ensure that the file exists and is up to date
 	if (
-		not os.path.exists(swpath)
-		or check_for_update(swpath, max_age=update_interval)
+		not os.path.exists(swpath_all)
+		or not os.path.exists(swpath_5y)
 	):
-		_dl_file(swpath)
-	return _read_sw(swpath)
+		warn("Could not find space weather data, trying to download.")
+		update_data()
+
+	if (
+		get_file_age(swpath_all) > pd.Timedelta("5y")
+		or get_file_age(swpath_5y) > pd.Timedelta(update_interval)
+	):
+		warn("Data files *might* be too old, consider running `sw.update_data()`.")
+
+	df_all = read_sw(swpath_all)
+	df_5y = read_sw(swpath_5y)
+	return pd.concat([df_all[:df_5y.index[0]], df_5y[1:]])
 
 
-def ap_kp_3h(swfile=SW_FILE):
+def ap_kp_3h(swpath_all=SW_PATH_ALL, swpath_5y=SW_PATH_5Y, update_interval="30days"):
 	"""3h Ap and Kp index values
 	"""
-	daily_df = sw_daily(swfile)
+	daily_df = sw_daily(
+		swpath_all=swpath_all, swpath_5y=swpath_5y, update_interval=update_interval
+	)
 	ret = daily_df.copy()
 	apns = ["Ap{0}".format(i) for i in range(0, 23, 3)]
 	kpns = ["Kp{0}".format(i) for i in range(0, 23, 3)]
