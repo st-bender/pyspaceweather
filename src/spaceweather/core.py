@@ -67,7 +67,8 @@ def update_data(
 
 	# Update the large file after four years
 	# to have some overlap with the 5-year data
-	_update_file(swpath_all, url_all, "4y")
+	# 1460 = 4 * 365
+	_update_file(swpath_all, url_all, "1460days")
 	# Don't re-download before `min_age` has passed (3h)
 	_update_file(swpath_5y, url_5y, min_age)
 
@@ -110,7 +111,8 @@ def sw_daily(swpath_all=SW_PATH_ALL, swpath_5y=SW_PATH_5Y, update_interval="30da
 		update_data()
 
 	if (
-		get_file_age(swpath_all) > pd.Timedelta("5y")
+		# 1460 = 4 * 365
+		get_file_age(swpath_all) > pd.Timedelta("1460days")
 		or get_file_age(swpath_5y) > pd.Timedelta(update_interval)
 	):
 		warn("Data files *might* be too old, consider running `sw.update_data()`.")
