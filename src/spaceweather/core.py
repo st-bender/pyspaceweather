@@ -134,6 +134,42 @@ def read_sw(swpath):
 	-------
 	sw_df: pd.Dataframe
 		The parsed space weather data (daily values).
+		The dataframe contains the following columns:
+		"year", "month", "day": The observation date
+		"bsrn": Bartels Solar Rotation Number.
+			A sequence of 27-day intervals counted continuously from 1832 Feb 8.
+		"rotd": Number of Day within the Bartels 27-day cycle (01-27).
+		"Kp0", "Kp3", "Kp6", "Kp9", "Kp12", "Kp15", "Kp18", "Kp21":
+			Planetary 3-hour Range Index (Kp) for 0000-0300, 0300-0600,
+			0600-0900, 0900-1200, 1200-1500, 1500-1800, 1800-2100, 2100-2400 UT
+		"Kpsum": Sum of the 8 Kp indices for the day.
+			Expressed to the nearest third of a unit.
+		"Ap0", "Ap3", "Ap6", "Ap9", "Ap12", "Ap15", "Ap18", "Ap21":
+			Planetary Equivalent Amplitude (Ap) for 0000-0300, 0300-0600,
+			0600-0900, 0900-1200, 1200-1500, 1500-1800, 1800-2100, 2100-2400 UT
+		"Apavg": Arithmetic average of the 8 Ap indices for the day.
+		"Cp": Cp or Planetary Daily Character Figure. A qualitative estimate of
+			overall level of magnetic activity for the day determined from the sum
+			of the 8 Ap indices. Cp ranges, in steps of one-tenth, from 0 (quiet)
+			to 2.5 (highly disturbed). "C9":
+		"isn": International Sunspot Number.
+			Records contain the Zurich number through 1980 Dec 31 and the
+			International Brussels number thereafter.
+		"f107_adj": 10.7-cm Solar Radio Flux (F10.7) Adjusted to 1 AU.
+			Measured at Ottawa at 1700 UT daily from 1947 Feb 14 until
+			1991 May 31 and measured at Penticton at 2000 UT from 1991 Jun 01 on.
+			Expressed in units of 10-22 W/m2/Hz.
+		"Q": Flux Qualifier.
+			0 indicates flux required no adjustment;
+			1 indicates flux required adjustment for burst in progress at time of measurement;
+			2 indicates a flux approximated by either interpolation or extrapolation;
+			3 indicates no observation; and
+			4 indicates CSSI interpolation of missing data.
+		"f107_81ctr_adj": Centered 81-day arithmetic average of F10.7 (adjusted).
+		"f107_81lst_adj": Last 81-day arithmetic average of F10.7 (adjusted).
+		"f107_obs": Observed (unadjusted) value of F10.7.
+		"f107_81ctr_obs": Centered 81-day arithmetic average of F10.7 (observed).
+		"f107_81lst_obs": Last 81-day arithmetic average of F10.7 (observed).
 	"""
 	kpns = ["Kp{0}".format(i) for i in range(0, 23, 3)] + ["Kpsum"]
 	sw = np.genfromtxt(
@@ -237,6 +273,8 @@ def ap_kp_3h(*args, **kwargs):
 	-------
 	sw_df: pd.Dataframe
 		The combined Ap and Kp index data (3h values).
+		The index values are centred at the 3h interval, i.e. at 01:30:00,
+		04:30:00, 07:30:00, ... and so on.
 
 	See Also
 	--------
