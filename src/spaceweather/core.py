@@ -251,4 +251,5 @@ def ap_kp_3h(*args, **kwargs):
 		ret[kp].index = daily_df[kp].index + pd.Timedelta((i * 3 + 1.5), unit="h")
 	sw_ap = pd.concat([ret[ap] for ap in apns])
 	sw_kp = pd.concat([ret[kp] for kp in kpns])
-	return pd.DataFrame({"Ap": sw_ap, "Kp": sw_kp})
+	df = pd.DataFrame({"Ap": sw_ap, "Kp": sw_kp})
+	return df.reindex(df.index.sort_values())
