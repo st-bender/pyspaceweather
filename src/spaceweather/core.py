@@ -39,6 +39,23 @@ def _dl_file(swpath, url=DL_URL_ALL):
 
 
 def get_file_age(swpath, relative=True):
+	"""Age of the downloaded data file
+
+	Retrieves the last update time of the given file or full path.
+
+	Parameters
+	----------
+	swpath: str
+		Filename to check, absolute path or relative to the current dir.
+	relative: bool, optional, default True
+		Return the file's age (True) or the last update time (False).
+
+	Returns
+	-------
+	upd: pd.Timestamp or pd.Timedelta
+		The last updated time or the file age, depending on the setting
+		of `relative` above.
+	"""
 	for line in open(swpath):
 		if line.startswith("UPDATED"):
 			# closes the file automatically
@@ -54,6 +71,36 @@ def update_data(
 	swpath_all=SW_PATH_ALL, swpath_5y=SW_PATH_5Y,
 	url_all=DL_URL_ALL, url_5y=DL_URL_5Y,
 ):
+	"""Update the local space weather index data
+
+	Updates the local space weather index data from the website
+	<https://celestrak.com/SpaceData/>, given that the 5-year file is older
+	than `min_age`, or the combined (large) file is older than four years.
+	If the data is missing for some reason, a download will be attempted nonetheless.
+
+	All arguments are optional and changing them from the defaults should not
+	be required neither should it be necessary nor is it recommended.
+
+	Parameters
+	----------
+	min_age: str, optional, default "3h"
+		The time after which a new download will be attempted.
+		The online data is updated every 3 hours, thus setting this value to
+		a shorter time is not needed and not recommended.
+	swpath_all: str, optional, default depending on package install location
+		Filename for the large combined index file including the
+		historic data, absolute path or relative to the current dir.
+	swpath_5y: str, optional, default depending on package install location
+		Filename for the 5-year index file, absolute path or relative to the current dir.
+	url_all: str, optional, default `sw.DL_URL_ALL`
+		The url of the "historic" data file.
+	url_5y: str, optional, default `sw.DL_URL_5Y`
+		The url of the data file of containing the indices of the last 5 years.
+
+	Returns
+	-------
+	Nothing.
+	"""
 	def _update_file(swpath, url, min_age):
 		if not os.path.exists(swpath):
 			logging.info("{0} not found, downloading.".format(swpath))
@@ -74,6 +121,20 @@ def update_data(
 
 
 def read_sw(swpath):
+	"""Read and parse space weather index data file
+
+	Reads the given file and parses it according to the space weather data format.
+
+	Parameters
+	----------
+	swpath: str
+		File to parse, absolute path or relative to the current dir.
+
+	Returns
+	-------
+	sw_df: pd.Dataframe
+		The parsed space weather data (daily values).
+	"""
 	kpns = ["Kp{0}".format(i) for i in range(0, 23, 3)] + ["Kpsum"]
 	sw = np.genfromtxt(
 		swpath,
