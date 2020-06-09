@@ -224,7 +224,7 @@ def sw_daily(swpath_all=SW_PATH_ALL, swpath_5y=SW_PATH_5Y, update=False, update_
 
 
 @_doc_param(params=_SW_COMMON_PARAMS)
-def ap_kp_3h(swpath_all=SW_PATH_ALL, swpath_5y=SW_PATH_5Y, update=False, update_interval="30days"):
+def ap_kp_3h(*args, **kwargs):
 	"""Extract 3h values of Ap and Kp
 
 	Extracts 3-hourly Ap and Kp indices from the full daily data set.
@@ -242,10 +242,7 @@ def ap_kp_3h(swpath_all=SW_PATH_ALL, swpath_5y=SW_PATH_5Y, update=False, update_
 	--------
 	`sw_daily()`
 	"""
-	daily_df = sw_daily(
-		swpath_all=swpath_all, swpath_5y=swpath_5y,
-		update=update, update_interval=update_interval
-	)
+	daily_df = sw_daily(*args, **kwargs)
 	ret = daily_df.copy()
 	apns = ["Ap{0}".format(i) for i in range(0, 23, 3)]
 	kpns = ["Kp{0}".format(i) for i in range(0, 23, 3)]
