@@ -242,7 +242,7 @@ def sw_daily(swpath_all=SW_PATH_ALL, swpath_5y=SW_PATH_5Y, update=False, update_
 		or not os.path.exists(swpath_5y)
 	):
 		warn("Could not find space weather data, trying to download.")
-		update_data()
+		update_data(swpath_all=swpath_all, swpath_5y=swpath_5y)
 
 	if (
 		# 1460 = 4 * 365
@@ -250,7 +250,7 @@ def sw_daily(swpath_all=SW_PATH_ALL, swpath_5y=SW_PATH_5Y, update=False, update_
 		or get_file_age(swpath_5y) > pd.Timedelta(update_interval)
 	):
 		if update:
-			update_data()
+			update_data(swpath_all=swpath_all, swpath_5y=swpath_5y)
 		else:
 			warn("Data files *might* be too old, consider running `sw.update_data()`.")
 
