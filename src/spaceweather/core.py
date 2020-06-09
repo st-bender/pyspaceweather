@@ -99,8 +99,8 @@ def read_sw(swpath):
 	return sw_df
 
 
-def sw_daily(swpath_all=SW_PATH_ALL, swpath_5y=SW_PATH_5Y, update_interval="30days"):
-	"""Daily Ap, Kp, and f10.7 index values
+def sw_daily(swpath_all=SW_PATH_ALL, swpath_5y=SW_PATH_5Y, update=False, update_interval="30days"):
+	"""Combined daily Ap, Kp, and f10.7 index values
 	"""
 	# ensure that the file exists and is up to date
 	if (
@@ -115,18 +115,22 @@ def sw_daily(swpath_all=SW_PATH_ALL, swpath_5y=SW_PATH_5Y, update_interval="30da
 		get_file_age(swpath_all) > pd.Timedelta("1460days")
 		or get_file_age(swpath_5y) > pd.Timedelta(update_interval)
 	):
-		warn("Data files *might* be too old, consider running `sw.update_data()`.")
+		if update:
+			update_data()
+		else:
+			warn("Data files *might* be too old, consider running `sw.update_data()`.")
 
 	df_all = read_sw(swpath_all)
 	df_5y = read_sw(swpath_5y)
 	return pd.concat([df_all[:df_5y.index[0]], df_5y[1:]])
 
 
-def ap_kp_3h(swpath_all=SW_PATH_ALL, swpath_5y=SW_PATH_5Y, update_interval="30days"):
-	"""3h Ap and Kp index values
+def ap_kp_3h(swpath_all=SW_PATH_ALL, swpath_5y=SW_PATH_5Y, update=False, update_interval="30days"):
+	"""Extract 3h values of Ap and Kp
 	"""
 	daily_df = sw_daily(
-		swpath_all=swpath_all, swpath_5y=swpath_5y, update_interval=update_interval
+		swpath_all=swpath_all, swpath_5y=swpath_5y,
+		update=update, update_interval=update_interval
 	)
 	ret = daily_df.copy()
 	apns = ["Ap{0}".format(i) for i in range(0, 23, 3)]

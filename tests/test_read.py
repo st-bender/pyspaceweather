@@ -31,12 +31,22 @@ def test_age():
 		assert (fage0 > pd.Timedelta("1d")) == (fage1 > pd.Timedelta("1d"))
 
 
+def _assert_age(p, age):
+	assert os.path.exists(p)
+	fage = get_file_age(p)
+	assert fage < pd.Timedelta(age)
+
+
 def test_update():
 	update_data(min_age="100d")
 	for p in [SW_PATH_ALL, SW_PATH_5Y]:
-		assert os.path.exists(p)
-		fage = get_file_age(p)
-		assert fage < pd.Timedelta("100d")
+		_assert_age(p, "100d")
+
+
+def test_auto_update():
+	# Should update the last-5-year data
+	df = sw_daily(update=True, update_interval="1d")
+	_assert_age(SW_PATH_5Y, "1d")
 
 
 def test_daily():
