@@ -29,3 +29,17 @@ notifications:
   email:
     on_success: never
     on_failure: always
+deploy:
+  - provider: pypi
+    edge: true
+    server: https://test.pypi.org/legacy/
+    user: __token__
+    password:
+      secure: OzHf1iuJFsQaRXF6g+DdEg41Cz0awEB+QOeYk3Qcl27CUhhMrBFt5zA+VsclWWHTVvx/TgShRld44h4qcu5bxpClrh5H66Kk//xCobAv4Neyjm8cYohzTzQ3k0Oh9y7oAGa4d49rWma5D151elV4qhW1LxnYR0Tx8HeUMfIuFAulG0w590UFDl6Ppd0k6RVBiMMHgInKbMFnOkdPm2/QYu52rvlkqK+cOue6cjl+fHgNuWfBbxRMRm0Z8p0hm44pnWUnm4RLPZ0yHMxMuMnJdg5bpcZKC3mybY6VFlmFJ6JHe/tTPXeXQeGxkHqusSPYk4WR5I8ZWtetDTnqqeboup2Rp1fpebTYqihlDHo3TV+kVIDpHsNlXWHfDhy+zYHQ8KXLi8fFoQfE2FwxSEik0JNhsLsD41pbWguwOLGpKO9YHd/WceU3aneMXygMnthnEseCDY8bJQPFLsWk0bDvqio2iYW0ShcFt7E5JDhU/BuMiYj6eFsaWxEstJCb2FtR4tNZeMBpJnSkoasJTXa+0IJaQ6S+1qh6U5/JpAiM1ej0eEuYcxQfNZxTpKLi+A23bqxBLfPyzbV+LoUvoO9nzU9AhwptQwFZteN/bpFHUYIzuF84Q7paj6PNxv/DBhrpIEy1AjRIDy/yCFUTdkC7Bh8z/VB18qkagZ7d7wcRN9c=
+    skip_existing: true
+    distributions: sdist bdist_wheel
+    on:
+      repo: st-bender/pyspaceweather
+      branch: master
+      tags: false
+      condition: $TRAVIS_PYTHON_VERSION == 3.7
