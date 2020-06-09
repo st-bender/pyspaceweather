@@ -9,7 +9,7 @@ meta_path = path.join("src", name, "__init__.py")
 here = path.abspath(path.dirname(__file__))
 
 extras_require = {
-	"tests": ["pytest"],
+	"tests": ["pytest", "pytest-mock"],
 }
 extras_require["all"] = sorted(
 	{v for req in extras_require.values() for v in req})

@@ -15,6 +15,8 @@ import os
 import numpy as np
 import pandas as pd
 
+from pytest_mock import mocker
+
 from spaceweather import (
 	ap_kp_3h, sw_daily, get_file_age, update_data,
 	SW_PATH_ALL, SW_PATH_5Y,
@@ -43,10 +45,13 @@ def test_update():
 		_assert_age(p, "100d")
 
 
-def test_auto_update():
+def test_auto_update(mocker):
+	# test with non-existent file
+	mocker.patch("spaceweather.core._dl_file")
+	update_data(swpath_5y="/tmp/foo")
 	# Should update the last-5-year data
 	df = sw_daily(update=True, update_interval="1d")
-	_assert_age(SW_PATH_5Y, "1d")
+	_assert_age(SW_PATH_5Y, "100d")
 
 
 def test_daily():
