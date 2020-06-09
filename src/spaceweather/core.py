@@ -160,8 +160,45 @@ def read_sw(swpath):
 	return sw_df
 
 
+# Common arguments for the public daily and 3h interfaces
+_SW_COMMON_PARAMS = """
+	Parameters
+	----------
+	swpath_all: str, optional, default depending on package install location
+		Filename for the large combined index file including the
+		historic data, absolute path or relative to the current dir.
+	swpath_5y: str, optional, default depending on package install location
+		Filename for the 5-year index file, absolute path or relative to the current dir.
+	update: bool, optional, default False
+		Attempt to update the local data if it is older than `update_interval`.
+	update_interval: str, optional, default "30days"
+		The time after which the data are considered "old".
+		By default, no automatic re-download is initiated, set `update` to true.
+		The online data is updated every 3 hours, thus setting this value to
+		a shorter time is not needed and not recommended.
+"""
+
+
+def _doc_param(**sub):
+	def dec(obj):
+		obj.__doc__ = obj.__doc__.format(**sub)
+		return obj
+	return dec
+
+
+@_doc_param(params=_SW_COMMON_PARAMS)
 def sw_daily(swpath_all=SW_PATH_ALL, swpath_5y=SW_PATH_5Y, update=False, update_interval="30days"):
 	"""Combined daily Ap, Kp, and f10.7 index values
+
+	Combines the "historic" and last-5-year data into one dataframe.
+
+	All arguments are optional and changing them from the defaults should not
+	be required neither should it be necessary nor is it recommended.
+	{params}
+	Returns
+	-------
+	sw_df: pd.Dataframe
+		The combined parsed space weather data (daily values).
 	"""
 	# ensure that the file exists and is up to date
 	if (
@@ -186,8 +223,24 @@ def sw_daily(swpath_all=SW_PATH_ALL, swpath_5y=SW_PATH_5Y, update=False, update_
 	return pd.concat([df_all[:df_5y.index[0]], df_5y[1:]])
 
 
+@_doc_param(params=_SW_COMMON_PARAMS)
 def ap_kp_3h(swpath_all=SW_PATH_ALL, swpath_5y=SW_PATH_5Y, update=False, update_interval="30days"):
 	"""Extract 3h values of Ap and Kp
+
+	Extracts 3-hourly Ap and Kp indices from the full daily data set.
+
+	Accepts the same arguments as `sw_daily()`.
+	All arguments are optional and changing them from the defaults should not
+	be required neither should it be necessary nor is it recommended.
+	{params}
+	Returns
+	-------
+	sw_df: pd.Dataframe
+		The combined Ap and Kp index data (3h values).
+
+	See Also
+	--------
+	`sw_daily()`
 	"""
 	daily_df = sw_daily(
 		swpath_all=swpath_all, swpath_5y=swpath_5y,
