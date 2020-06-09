@@ -16,6 +16,9 @@ The data sources and file format are described at
 <http://celestrak.com/SpaceData/SpaceWx-format.php>
 (see [file_format.txt](file_format.txt) for a local copy of the format description).
 
+:warning: This package is in **alpha** stage, that is, it may or
+may not work, and the interface might change in future versions.
+
 ## Install
 
 ### Requirements
