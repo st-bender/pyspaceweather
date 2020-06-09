@@ -43,3 +43,15 @@ deploy:
       branch: master
       tags: false
       condition: $TRAVIS_PYTHON_VERSION == 3.7
+  - provider: pypi
+    edge: true
+    user: __token__
+    password:
+      secure: ePsk9dARXmfjc5BImOEf7LY0SjIvbcRcW8Gp907lx0Wic4DiGGVrnvj/hqPzIByuJzGcQsYNAw/XXOMOPzzzQKPybI3Byi+jq3R111o096zTBCbtTmJMFoeYbLE7eaY2wALwY6jUhjsRGpYJ1bgbwd2IIP5n5jhOEdMLoJrwX/uxdnziTLCLNGHmsLafdNbrCMXMAdciNUXvT4845Sbhg2YildA+RZhuNWdLJIso2yQGKrZ6GQV2eZIPxn1pOxOCsb5M+XQ72nGyU/5wfKkAT4y9+fJtMrdrNQCJpkzUrTBD6/gd+fZEQ0EDxjS8ORG7f+iw1Qap0iXnPqeBGJEMgf1/oop/BGbtsXchhGS4CoEiyuWCk7V+Wm2vlDsQqr90Gez9z5El04ljT9nG+AbX4PxnzoTTuYJTgsMhkG60Ux7wgWUAteT0IWld0NN8wzDQT81+lRNmIp32+E4K1ZAs6HDIVRinXAIfyC13uApSSnN3UwFTYmkWIYaijLl7P2ovGrCfuQZPaS43f+dF7cAg5nCvcwwK5rdnlU5m2T7ZwMBuz+DNV/AQ2LC8Tq7obn6YIMh865t2WONttk4lGb1NeQ8gArTKBVeqiNUWvXgySaKTuogx+JCQxL27ByBT++t3vtAie/HHRS0rBrrTUGIQ7h3GGQHgeTMlFZXeOVjFwdY=
+    skip_existing: true
+    distributions: sdist bdist_wheel
+    on:
+      repo: st-bender/pyspaceweather
+      branch: master
+      tags: true
+      condition: $TRAVIS_PYTHON_VERSION == 3.7
