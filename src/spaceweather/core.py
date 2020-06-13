@@ -235,6 +235,10 @@ def sw_daily(swpath_all=SW_PATH_ALL, swpath_5y=SW_PATH_5Y, update=False, update_
 	-------
 	sw_df: pd.Dataframe
 		The combined parsed space weather data (daily values).
+
+	See Also
+	--------
+	ap_kp_3h, read_sw
 	"""
 	# ensure that the file exists and is up to date
 	if (
@@ -278,7 +282,7 @@ def ap_kp_3h(*args, **kwargs):
 
 	See Also
 	--------
-	`sw_daily()`
+	sw_daily
 	"""
 	daily_df = sw_daily(*args, **kwargs)
 	ret = daily_df.copy()
