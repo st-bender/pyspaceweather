@@ -256,7 +256,12 @@ def sw_daily(swpath_all=SW_PATH_ALL, swpath_5y=SW_PATH_5Y, update=False, update_
 		if update:
 			update_data(swpath_all=swpath_all, swpath_5y=swpath_5y)
 		else:
-			warn("Data files *might* be too old, consider running `sw.update_data()`.")
+			warn(
+				"Local data files are older than {0}, pass `update=True` or "
+				"run `sw.update_data()` manually if you need newer data.".format(
+					update_interval
+				)
+			)
 
 	df_all = read_sw(swpath_all)
 	df_5y = read_sw(swpath_5y)
