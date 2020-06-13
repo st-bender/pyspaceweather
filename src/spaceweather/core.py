@@ -7,6 +7,9 @@
 # See accompanying COPYING.GPLv2 file or http://www.gnu.org/licenses/gpl-2.0.html.
 """Python interface for space weather indices
 
+Space weather indices for python using the dat available at [#]_.
+
+.. [#] https://celestrak.com/SpaceData/
 """
 import os
 from pkg_resources import resource_filename
@@ -73,13 +76,15 @@ def update_data(
 ):
 	"""Update the local space weather index data
 
-	Updates the local space weather index data from the website
-	<https://celestrak.com/SpaceData/>, given that the 5-year file is older
+	Updates the local space weather index data from the website [#]_,
+	given that the 5-year file is older
 	than `min_age`, or the combined (large) file is older than four years.
 	If the data is missing for some reason, a download will be attempted nonetheless.
 
 	All arguments are optional and changing them from the defaults should not
 	be required neither should it be necessary nor is it recommended.
+
+	.. [#] https://celestrak.com/SpaceData/
 
 	Parameters
 	----------
@@ -270,9 +275,9 @@ def sw_daily(swpath_all=SW_PATH_ALL, swpath_5y=SW_PATH_5Y, update=False, update_
 
 @_doc_param(params=_SW_COMMON_PARAMS)
 def ap_kp_3h(*args, **kwargs):
-	"""Extract 3h values of Ap and Kp
+	"""3h values of Ap and Kp
 
-	Extracts 3-hourly Ap and Kp indices from the full daily data set.
+	Provides the 3-hourly Ap and Kp indices from the full daily data set.
 
 	Accepts the same arguments as `sw_daily()`.
 	All arguments are optional and changing them from the defaults should not
