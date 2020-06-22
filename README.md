@@ -27,7 +27,7 @@ may not work, and the interface might change in future versions.
 ### Requirements
 
 - `numpy` - required
-- `pytest` - optional, for testing
+- `pytest`, `pytest-mock` - optional, for testing
 
 ### spaceweather
 
@@ -83,7 +83,8 @@ The python module itself is named `spaceweather` and is imported as usual.
 This module provides mainly two functions `sw_daily()` for the daily data
 as available from the website, and `ap_kp_3h()` for the 3h Ap and Kp values.
 Both functions return `pandas.DataFrame`s.
-The index file will be downloaded locally on the first run.
+The index data file can be updated on request by calling `update_data()`,
+when the data available in the packaged version are too old.
 
 ```python
 >>> import spaceweather as sw
