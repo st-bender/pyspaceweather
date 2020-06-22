@@ -1,6 +1,9 @@
 # Python interface for space weather indices
 
 [![builds](https://travis-ci.com/st-bender/pyspaceweather.svg?branch=master)](https://travis-ci.com/st-bender/pyspaceweather)
+[![package](https://img.shields.io/pypi/v/spaceweather.svg?style=flat)](https://pypi.org/project/spaceweather)
+[![wheel](https://img.shields.io/pypi/wheel/spaceweather.svg?style=flat)](https://pypi.org/project/spaceweather)
+[![pyversions](https://img.shields.io/pypi/pyversions/spaceweather.svg?style=flat)](https://pypi.org/project/spaceweather)
 [![codecov](https://codecov.io/gh/st-bender/pyspaceweather/badge.svg)](https://codecov.io/gh/st-bender/pyspaceweather)
 [![coveralls](https://coveralls.io/repos/github/st-bender/pyspaceweather/badge.svg)](https://coveralls.io/github/st-bender/pyspaceweather)
 [![scrutinizer](https://scrutinizer-ci.com/g/st-bender/pyspaceweather/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/st-bender/pyspaceweather/?branch=master)
@@ -26,9 +29,14 @@ may not work, and the interface might change in future versions.
 - `numpy` - required
 - `pytest` - optional, for testing
 
-### pyspaceweather
+### spaceweather
 
-As binary package support is limited, pyspaceweather can be installed
+An **experimental** `pip` package called `spaceweather` is available from the
+main package repository, and can be installed with:
+```sh
+$ pip install spaceweather
+```
+The latest development version can be installed
 with [`pip`](https://pip.pypa.io) directly from github
 (see <https://pip.pypa.io/en/stable/reference/pip_install/#vcs-support>
 and <https://pip.pypa.io/en/stable/reference/pip_install/#git>):
