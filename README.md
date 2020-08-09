@@ -1,4 +1,6 @@
-# Python interface for space weather indices
+# PySpaceWeather
+
+**Python interface for space weather indices**
 
 [![builds](https://travis-ci.com/st-bender/pyspaceweather.svg?branch=master)](https://travis-ci.com/st-bender/pyspaceweather)
 [![package](https://img.shields.io/pypi/v/spaceweather.svg?style=flat)](https://pypi.org/project/spaceweather)
