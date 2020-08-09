@@ -1,0 +1,10 @@
+name: spaceweather
+
+channels:
+    - conda-forge
+
+dependencies:
+    - python=3.6
+    - numpy
+    - numpydoc
+    - requests
