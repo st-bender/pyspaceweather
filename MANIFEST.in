@@ -1,5 +1,7 @@
+graft docs
 graft src
 graft tests
+prune docs/_build
 
 include COPYING*
 include *.md
