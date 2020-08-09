@@ -25,6 +25,8 @@ The data sources and file format are described at
 :warning: This package is in **alpha** stage, that is, it may or
 may not work, and the interface might change in future versions.
 
+Documentation is available at <https://pyspaceweather.readthedocs.io>.
+
 ## Install
 
 ### Requirements
