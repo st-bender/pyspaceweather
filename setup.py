@@ -76,6 +76,7 @@ if __name__ == "__main__":
 		install_requires=[
 			"numpy>=1.13.0",
 			"pandas",
+			"requests",
 		],
 		extras_require=extras_require,
 		scripts=[],
