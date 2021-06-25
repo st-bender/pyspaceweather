@@ -32,6 +32,7 @@ Documentation is available at <https://pyspaceweather.readthedocs.io>.
 ### Requirements
 
 - `numpy` - required
+- `pandas` - required
 - `pytest`, `pytest-mock` - optional, for testing
 
 ### spaceweather
