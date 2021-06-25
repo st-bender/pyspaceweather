@@ -122,7 +122,7 @@ Basic class and method documentation is accessible via `pydoc`:
 $ pydoc spaceweather
 ```
 
-# License
+## License
 
 This python interface is free software: you can redistribute it or modify
 it under the terms of the GNU General Public License as published by
