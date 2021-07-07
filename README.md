@@ -33,6 +33,7 @@ Documentation is available at <https://pyspaceweather.readthedocs.io>.
 
 - `numpy` - required
 - `pandas` - required
+- `requests` - required for updating the data files
 - `pytest`, `pytest-mock` - optional, for testing
 
 ### spaceweather
