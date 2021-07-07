@@ -57,7 +57,7 @@ if __name__ == "__main__":
 		author_email="stefan.bender@ntnu.no",
 		license="GPLv2",
 		classifiers=[
-			"Development Status :: 3 - Alpha",
+			"Development Status :: 4 - Beta",
 			"Intended Audience :: Science/Research",
 			"License :: OSI Approved :: GNU General Public License v2 (GPLv2)",
 			"Programming Language :: Python",
