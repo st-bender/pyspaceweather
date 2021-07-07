@@ -42,8 +42,8 @@ def _assert_age(p, age):
 
 def test_update():
 	update_data(min_age="100d")
-	for p in [SW_PATH_ALL, SW_PATH_5Y]:
-		_assert_age(p, "100d")
+	for (p, age) in zip([SW_PATH_ALL, SW_PATH_5Y], ["1460d", "100d"]):
+		_assert_age(p, age)
 
 
 def test_auto_update(mocker):
