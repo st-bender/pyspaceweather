@@ -37,7 +37,7 @@ Documentation is available at <https://pyspaceweather.readthedocs.io>.
 
 ### spaceweather
 
-An **experimental** `pip` package called `spaceweather` is available from the
+A `pip` package called `spaceweather` is available from the
 main package repository, and can be installed with:
 ```sh
 $ pip install spaceweather
