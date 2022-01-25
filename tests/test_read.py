@@ -54,7 +54,7 @@ def test_auto_update(mocker):
 	sw_daily(update=True, update_interval="1d")
 	_assert_age(SW_PATH_5Y, "100d")
 	with pytest.warns(UserWarning):
-		sw_daily(update=False, update_interval="1h")
+		sw_daily(update=False, update_interval="0h")
 
 
 def test_daily():
