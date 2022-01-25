@@ -5,6 +5,8 @@ on:
     branches:
       - master
       - github_ci
+    tags:
+      - '*'
 
 jobs:
   build_and_test:
