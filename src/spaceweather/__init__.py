@@ -8,6 +8,6 @@
 """Python interface for space weather indices
 
 """
-__version__ = "0.1.0"
+__version__ = "0.1.1"
 
 from .core import *
