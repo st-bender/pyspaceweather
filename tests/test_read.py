@@ -16,7 +16,6 @@ import numpy as np
 import pandas as pd
 
 import pytest
-from pytest_mock import mocker
 
 from spaceweather import (
 	ap_kp_3h, sw_daily, get_file_age, update_data,
