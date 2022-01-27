@@ -50,6 +50,31 @@ jobs:
       - name: Upload coverage report
         uses: codecov/codecov-action@v2
 
+      - name: Upload to Coveralls
+        if: startsWith(matrix.os, 'ubuntu') && matrix.python-version != '2.7'
+        run: |
+          python -m coveralls --service=github
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          COVERALLS_PARALLEL: true
+          COVERALLS_FLAG_NAME: py${{ matrix.python-version }}
+
+  coverage:
+    needs: build_and_test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.9"
+      - name: Finish coverage collection
+        run: |
+          python -m pip install -U pip
+          python -m pip install -U coveralls
+          python -m coveralls --finish
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
   deploy:
     name: Deploy to PyPi
     needs: build_and_test
