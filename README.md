@@ -2,7 +2,7 @@
 
 **Python interface for space weather indices**
 
-[![builds](https://github.com/st-bender/pyspaceweather/actions/workflows/ci_build_and_test.yml/badge.svg)](https://github.com/st-bender/pyspaceweather/actions/workflows/ci_build_and_test.yml)
+[![builds](https://github.com/st-bender/pyspaceweather/actions/workflows/ci_build_and_test.yml/badge.svg?branch=master)](https://github.com/st-bender/pyspaceweather/actions/workflows/ci_build_and_test.yml)
 [![docs](https://readthedocs.org/projects/pyspaceweather/badge/?version=latest)](https://pyspaceweather.readthedocs.io/en/latest/?badge=latest)
 [![package](https://img.shields.io/pypi/v/spaceweather.svg?style=flat)](https://pypi.org/project/spaceweather)
 [![wheel](https://img.shields.io/pypi/wheel/spaceweather.svg?style=flat)](https://pypi.org/project/spaceweather)
