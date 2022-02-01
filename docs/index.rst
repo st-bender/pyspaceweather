@@ -10,8 +10,8 @@ Python interface for space weather indices
 
 The source code is `developed on Github <https://github.com/st-bender/pyspaceweather>`_.
 
-.. image:: https://travis-ci.com/st-bender/pyspaceweather.svg?branch=master
-    :target: https://travis-ci.com/st-bender/pyspaceweather
+.. image:: https://github.com/st-bender/pyspaceweather/actions/workflows/ci_build_and_test.yml/badge.svg?branch=master
+    :target: https://github.com/st-bender/pyspaceweather/actions/workflows/ci_build_and_test.yml
     :alt: builds
 .. image:: https://readthedocs.org/projects/pyspaceweather/badge/?version=latest
     :target: https://pyspaceweather.readthedocs.io/en/latest/?badge=latest
