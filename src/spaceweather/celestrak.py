@@ -261,6 +261,13 @@ def sw_daily(swpath_all=SW_PATH_ALL, swpath_5y=SW_PATH_5Y, update=False, update_
 	):
 		warn("Could not find space weather data, trying to download.")
 		update_data(swpath_all=swpath_all, swpath_5y=swpath_5y)
+	# double ckeck that both are available
+	if (
+		not os.path.exists(swpath_all)
+		or not os.path.exists(swpath_5y)
+	):
+		warn("Download failed.")
+		return None
 
 	if (
 		# 1460 = 4 * 365
