@@ -76,19 +76,21 @@ def test_daily():
 	)
 
 
-def test_3hourly_ap():
+@pytest.mark.parametrize(
+	"name, result",
+	[
+		("Ap", np.array([56, 39, 27, 18, 32, 15, 32, 22])),
+		("Kp", np.array([5.3, 4.7, 4.0, 3.3, 4.3, 3.0, 4.3, 3.7])),
+	]
+)
+def test_3hourly_index(name, result):
 	df = ap_kp_3h()
 	np.testing.assert_allclose(
-		df.loc[pd.date_range("2000-01-01 01:30", "2000-01-01 23:30", freq='3h')].Ap.values,
-		np.array([56, 39, 27, 18, 32, 15, 32, 22]),
-		rtol=1e-12,
-	)
-
-
-def test_3hourly_kp():
-	df = ap_kp_3h()
-	np.testing.assert_allclose(
-		df.loc[pd.date_range("2000-01-01 01:30", "2000-01-01 23:30", freq='3h')].Kp.values,
-		np.array([5.3, 4.7, 4.0, 3.3, 4.3, 3.0, 4.3, 3.7]),
+		df.loc[
+			pd.date_range(
+				"2000-01-01 01:30", "2000-01-01 23:30", freq="3h"
+			)
+		][name].values,
+		result,
 		rtol=1e-12,
 	)
