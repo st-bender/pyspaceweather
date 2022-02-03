@@ -14,6 +14,7 @@ import os
 
 import numpy as np
 import pandas as pd
+import requests
 
 import pytest
 
@@ -21,6 +22,7 @@ from spaceweather import (
 	ap_kp_3h, sw_daily, get_file_age, update_data,
 	SW_PATH_ALL, SW_PATH_5Y,
 )
+from spaceweather.celestrak import DL_URL_5Y
 
 
 def test_age():
@@ -47,10 +49,12 @@ def test_update():
 
 def test_auto_update(mocker, tmpdir):
 	# test with non-existent file
-	mocker.patch("spaceweather.core._dl_file")
+	mocker.patch("requests.get")
 	update_data(swpath_5y=os.path.join(tmpdir, "foo.dat"))
+	requests.get.assert_called_with(DL_URL_5Y, stream=True)
 	# Should update the last-5-year data
 	sw_daily(update=True, update_interval="1d")
+	requests.get.assert_called_with(DL_URL_5Y, stream=True)
 	_assert_age(SW_PATH_5Y, "100d")
 	with pytest.warns(UserWarning):
 		sw_daily(update=False, update_interval="0h")
