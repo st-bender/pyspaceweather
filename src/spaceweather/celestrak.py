@@ -247,8 +247,9 @@ def sw_daily(swpath_all=SW_PATH_ALL, swpath_5y=SW_PATH_5Y, update=False, update_
 	{params}
 	Returns
 	-------
-	sw_df: pd.Dataframe
+	sw_df: pd.Dataframe or `None`
 		The combined parsed space weather data (daily values).
+		Returns `None` on error.
 
 	See Also
 	--------
@@ -301,10 +302,11 @@ def ap_kp_3h(*args, **kwargs):
 	{params}
 	Returns
 	-------
-	sw_df: pd.Dataframe
+	sw_df: pd.Dataframe or `None`
 		The combined Ap and Kp index data (3h values).
 		The index values are centred at the 3h interval, i.e. at 01:30:00,
 		04:30:00, 07:30:00, ... and so on.
+		Returns `None` on error.
 
 	See Also
 	--------
