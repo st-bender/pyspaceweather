@@ -311,6 +311,8 @@ def ap_kp_3h(*args, **kwargs):
 	sw_daily
 	"""
 	daily_df = sw_daily(*args, **kwargs)
+	if daily_df is None:
+		return None
 	ret = daily_df.copy()
 	apns = list(map("Ap{0}".format, range(0, 23, 3)))
 	kpns = list(map("Kp{0}".format, range(0, 23, 3)))
