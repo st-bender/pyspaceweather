@@ -50,6 +50,7 @@ def test_update():
 def test_auto_update(mocker, tmpdir):
 	# test with non-existent file
 	mocker.patch("requests.get")
+	tmpdir = str(tmpdir)
 	update_data(swpath_5y=os.path.join(tmpdir, "foo.dat"))
 	requests.get.assert_called_with(DL_URL_5Y, stream=True)
 	# Should update the last-5-year data
