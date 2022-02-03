@@ -61,6 +61,19 @@ def test_auto_update(mocker, tmpdir):
 		sw_daily(update=False, update_interval="0h")
 
 
+def test_not_avail(mocker, tmpdir):
+	# test with non-existent file
+	mocker.patch("requests.get")
+	tmpdir = str(tmpdir)
+	tmpfile = os.path.join(tmpdir, "foo.dat")
+	with pytest.warns(UserWarning):
+		df = sw_daily(update=False, update_interval="0h", swpath_5y=tmpfile)
+	assert df is None
+	with pytest.warns(UserWarning):
+		df = ap_kp_3h(update=False, update_interval="0h", swpath_5y=tmpfile)
+	assert df is None
+
+
 def test_daily():
 	df = sw_daily()
 	np.testing.assert_allclose(
