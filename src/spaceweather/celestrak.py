@@ -187,9 +187,18 @@ def read_sw(swpath):
 	sw = np.genfromtxt(
 		swpath,
 		skip_header=3,
-				# yy mm dd br rd kp kp kp kp kp kp kp kp Kp ap ap ap ap ap ap ap ap Ap cp c9 is f1  q f2 f3 f4 f5 f6
-		delimiter=[4, 3, 3, 5, 3, 3, 3, 3, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 2, 4, 6, 2, 6, 6, 6, 6, 6],
-		dtype=   "i4,i4,i4,i4,i4,i4,i4,i4,i4,i4,i4,i4,i4,i4,i4,i4,i4,i4,i4,i4,i4,i4,i4,f8,i4,i4,f8,i4,f8,f8,f8,f8,f8",
+		delimiter=[
+		#  yy mm dd br rd kp kp kp kp kp kp kp kp Kp
+			4, 3, 3, 5, 3, 3, 3, 3, 3, 3, 3, 3, 3, 4,
+		#  ap ap ap ap ap ap ap ap Ap cp c9 is f1  q
+			4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 2, 4, 6, 2,
+		#  f2 f3 f4 f5 f6
+			6, 6, 6, 6, 6],
+		dtype=(
+			"i4,i4,i4,i4,i4,i4,i4,i4,i4,i4,i4,i4,i4,i4,"
+			"i4,i4,i4,i4,i4,i4,i4,i4,i4,f8,i4,i4,f8,i4,"
+			"f8,f8,f8,f8,f8"
+		),
 		names=[
 			"year", "month", "day", "bsrn", "rotd",
 			"Kp0", "Kp3", "Kp6", "Kp9", "Kp12", "Kp15", "Kp18", "Kp21", "Kpsum",
