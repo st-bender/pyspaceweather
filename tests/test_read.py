@@ -45,10 +45,10 @@ def test_update():
 		_assert_age(p, age)
 
 
-def test_auto_update(mocker):
+def test_auto_update(mocker, tmpdir):
 	# test with non-existent file
 	mocker.patch("spaceweather.core._dl_file")
-	update_data(swpath_5y="/tmp/foo")
+	update_data(swpath_5y=os.path.join(tmpdir, "foo.dat"))
 	# Should update the last-5-year data
 	sw_daily(update=True, update_interval="1d")
 	_assert_age(SW_PATH_5Y, "100d")
