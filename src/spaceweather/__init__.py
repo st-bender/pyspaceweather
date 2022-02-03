@@ -1,4 +1,4 @@
-# Copyright (c) 2020 Stefan Bender
+# Copyright (c) 2020--2022 Stefan Bender
 #
 # This module is part of pyspaceweather.
 # pyspaceweather is free software: you can redistribute it or modify
@@ -10,4 +10,4 @@
 """
 __version__ = "0.1.1"
 
-from .core import *
+from .celestrak import *
