@@ -24,6 +24,13 @@ spaceweather.celestrak
    :undoc-members:
    :show-inheritance:
 
+spaceweather.omni
+-----------------
+
+.. automodule:: spaceweather.omni
+   :members:
+   :undoc-members:
+   :show-inheritance:
 
 Module contents
 ---------------
