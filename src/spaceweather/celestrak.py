@@ -19,7 +19,7 @@ from warnings import warn
 import numpy as np
 import pandas as pd
 
-from .core import _dl_file
+from .core import _assert_file_exists, _dl_file
 
 __all__ = [
 	"sw_daily", "ap_kp_3h", "read_sw",
@@ -52,7 +52,9 @@ def get_file_age(swpath, relative=True):
 	upd: pd.Timestamp or pd.Timedelta
 		The last updated time or the file age, depending on the setting
 		of `relative` above.
+		Raises ``IOError`` if the file is not found.
 	"""
+	_assert_file_exists(swpath)
 	for line in open(swpath):
 		if line.startswith("UPDATED"):
 			# closes the file automatically
@@ -131,8 +133,10 @@ def read_sw(swpath):
 
 	Returns
 	-------
-	sw_df: pd.Dataframe
+	sw_df: pandas.Dataframe
 		The parsed space weather data (daily values).
+		Raises an ``IOError`` if the file is not found.
+
 		The dataframe contains the following columns:
 
 		"year", "month", "day":
@@ -184,6 +188,7 @@ def read_sw(swpath):
 		"f107_81lst_obs":
 			Last 81-day arithmetic average of F10.7 (observed).
 	"""
+	_assert_file_exists(swpath)
 	sw = np.genfromtxt(
 		swpath,
 		skip_header=3,
@@ -256,9 +261,9 @@ def sw_daily(swpath_all=SW_PATH_ALL, swpath_5y=SW_PATH_5Y, update=False, update_
 	{params}
 	Returns
 	-------
-	sw_df: pd.Dataframe or `None`
+	sw_df: pandas.Dataframe
 		The combined parsed space weather data (daily values).
-		Returns `None` on error.
+		Raises ``IOError`` if the data files cannot be found.
 
 	See Also
 	--------
@@ -271,13 +276,6 @@ def sw_daily(swpath_all=SW_PATH_ALL, swpath_5y=SW_PATH_5Y, update=False, update_
 	):
 		warn("Could not find space weather data, trying to download.")
 		update_data(swpath_all=swpath_all, swpath_5y=swpath_5y)
-	# double ckeck that both are available
-	if (
-		not os.path.exists(swpath_all)
-		or not os.path.exists(swpath_5y)
-	):
-		warn("Download failed.")
-		return None
 
 	if (
 		# 1460 = 4 * 365
@@ -311,11 +309,11 @@ def ap_kp_3h(*args, **kwargs):
 	{params}
 	Returns
 	-------
-	sw_df: pd.Dataframe or `None`
+	sw_df: pandas.Dataframe
 		The combined Ap and Kp index data (3h values).
 		The index values are centred at the 3h interval, i.e. at 01:30:00,
 		04:30:00, 07:30:00, ... and so on.
-		Returns `None` on error.
+		Raises ``IOError`` if the data files cannot be found.
 
 	See Also
 	--------
