@@ -49,7 +49,7 @@ def get_file_age(swpath, relative=True):
 
 	Returns
 	-------
-	upd: pd.Timestamp or pd.Timedelta
+	upd: pandas.Timestamp or pandas.Timedelta
 		The last updated time or the file age, depending on the setting
 		of `relative` above.
 		Raises ``IOError`` if the file is not found.
@@ -133,7 +133,7 @@ def read_sw(swpath):
 
 	Returns
 	-------
-	sw_df: pandas.Dataframe
+	sw_df: pandas.DataFrame
 		The parsed space weather data (daily values).
 		Raises an ``IOError`` if the file is not found.
 
@@ -261,7 +261,7 @@ def sw_daily(swpath_all=SW_PATH_ALL, swpath_5y=SW_PATH_5Y, update=False, update_
 	{params}
 	Returns
 	-------
-	sw_df: pandas.Dataframe
+	sw_df: pandas.DataFrame
 		The combined parsed space weather data (daily values).
 		Raises ``IOError`` if the data files cannot be found.
 
@@ -309,7 +309,7 @@ def ap_kp_3h(*args, **kwargs):
 	{params}
 	Returns
 	-------
-	sw_df: pandas.Dataframe
+	sw_df: pandas.DataFrame
 		The combined Ap and Kp index data (3h values).
 		The index values are centred at the 3h interval, i.e. at 01:30:00,
 		04:30:00, 07:30:00, ... and so on.
