@@ -11,8 +11,8 @@
 [![coveralls](https://coveralls.io/repos/github/st-bender/pyspaceweather/badge.svg)](https://coveralls.io/github/st-bender/pyspaceweather)
 [![scrutinizer](https://scrutinizer-ci.com/g/st-bender/pyspaceweather/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/st-bender/pyspaceweather/?branch=master)
 
-This python module interfaces the space weather indices available at
-<https://celestrak.com/SpaceData/>.
+This python module interfaces the space weather data available at
+<https://celestrak.com/SpaceData/> and <https://omniweb.gsfc.nasa.gov/ow.html>.
 It includes the geomagnetic Ap and Kp indices, both the 3h values and
 the daily sum/averages.
 The data also include the solar f10.7 cm radio fluxes,
@@ -140,3 +140,45 @@ for details see the included [COPYING.data](COPYING.data) file.
 The data sources and file format are described at
 <http://celestrak.com/SpaceData/SpaceWx-format.php>
 (see [file_format.txt](file_format.txt) for a local copy of the format description).
+
+### OMNI
+
+This package includes part of the hourly-resolved OMNI data,
+accessible through <https://spdf.gsfc.nasa.gov/pub/data/omni/low_res_omni/>,
+and it enables easy downloading of it.
+The file format is described at
+<https://spdf.gsfc.nasa.gov/pub/data/omni/low_res_omni/omni2.text>
+(local copy [omni_format.txt](omni_format.txt))
+and the "extended" format at
+<https://spdf.gsfc.nasa.gov/pub/data/omni/low_res_omni/extended/aareadme_extended>
+(local copy [omnie_format.txt](omnie_format.txt)).
+
+If you use the OMNI data in your work, please read [COPYING.omni](COPYING.omni)
+carefully and cite the following publication:
+
+King, Joseph H. and Natalia E. Papitashvili,
+Solar wind spatial scales in and comparisons of hourly Wind and ACE plasma and magnetic field data,
+J. Geophys. Res., 110, A02104, 2005.
+
+Please acknowledge the OMNI sources, using the following DOIs for the OMNI datasets:
+
+Papitashvili, Natalia E. and King, Joseph H. (2022), "OMNI 1-min Data" [Data set], NASA Space
+Physics Data Facility, https://doi.org/10.48322/45bb-8792
+
+Papitashvili, Natalia E. and King, Joseph H. (2022), "OMNI 5-min Data" [Data set], NASA Space
+Physics Data Facility, https://doi.org/10.48322/gbpg-5r77
+
+Papitashvili, Natalia E. and King, Joseph H. (2022), "OMNI Hourly Data" [Data Set], NASA Space
+Physics Data Facility, https://doi.org/10.48322/1shr-ht18
+
+Papitashvili, Natalia E. and King, Joseph H. (2022), "OMNI Daily Data" [Data set], NASA Space
+Physics Data Facility, https://doi.org/10.48322/5fmx-hv56
+
+Papitashvili, Natalia E. and King, Joseph H. (2022), "OMNI 27-Day Data" [Data set], NASA Space
+Physics Data Facility, https://doi.org/10.48322/nmh3-jf75
+
+The OMNI data are also available from CDAWeb, and thus available via various other methods
+https://cdaweb.gsfc.nasa.gov/alternative_access_methods.html
+In particular, you might find our Python web service library useful
+https://pypi.org/project/cdasws
+Or through the HAPI streaming protocol https://github.com/hapi-server/client-python

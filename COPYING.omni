@@ -1,0 +1,38 @@
+Citing OMNI data set usage
+
+Thanks for using SPDF's OMNIWeb!
+
+Citations to use of OMNI data should be made inline in the body of text when first appropriate and/or in an Acknowledgement section.
+
+Examples of the first would be "...[mention of parameters used] as extracted from NASA/GSFC's OMNI data set through OMNIWeb..."
+
+In an Acknowledgement section: "We acknowledge use of NASA/GSFC's Space Physics Data Facility's OMNIWeb (or CDAWeb or ftp) service, and OMNI data."
+
+If you have used data from few sources within OMNI, you should also cite the Principal Investigators who provided those data to OMNI and who are identified in the OMNIWeb-accessible OMNI documentation files. See
+https://omniweb.sci.gsfc.nasa.gov/html/ow_data.html or
+https://omniweb.sci.gsfc.nasa.gov/html/HROdocum.html
+
+Specifically for use of OMNI data at hourly or lower resolution, you might cite from your text:
+
+King, Joseph H. and Natalia E. Papitashvili,
+Solar wind spatial scales in and comparisons of hourly Wind and ACE plasma and magnetic field data,
+J. Geophys. Res., 110, A02104, 2005.
+
+Please acknowledge the OMNI sources, using the following DOIs for the OMNI datasets:
+
+Papitashvili, Natalia E. and King, Joseph H. (2022), "OMNI 1-min Data" [Data set], NASA Space
+Physics Data Facility, https://doi.org/10.48322/45bb-8792
+Papitashvili, Natalia E. and King, Joseph H. (2022), "OMNI 5-min Data" [Data set], NASA Space
+Physics Data Facility, https://doi.org/10.48322/gbpg-5r77
+Papitashvili, Natalia E. and King, Joseph H. (2022), "OMNI Hourly Data" [Data Set], NASA Space
+Physics Data Facility, https://doi.org/10.48322/1shr-ht18
+Papitashvili, Natalia E. and King, Joseph H. (2022), "OMNI Daily Data" [Data set], NASA Space
+Physics Data Facility, https://doi.org/10.48322/5fmx-hv56
+Papitashvili, Natalia E. and King, Joseph H. (2022), "OMNI 27-Day Data" [Data set], NASA Space
+Physics Data Facility, https://doi.org/10.48322/nmh3-jf75
+
+The OMNI data are also available from CDAWeb, and thus available via various other methods
+https://cdaweb.gsfc.nasa.gov/alternative_access_methods.html
+In particular, you might find our Python web service library useful
+https://pypi.org/project/cdasws
+Or through the HAPI streaming protocol https://github.com/hapi-server/client-python
