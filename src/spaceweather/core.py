@@ -9,7 +9,15 @@
 
 General file handling functions for space weather data
 """
+import errno
+import os
+
 import requests
+
+
+def _assert_file_exists(f):
+	if not os.path.exists(f):
+		raise IOError(errno.ENOENT, os.strerror(errno.ENOENT), f)
 
 
 def _dl_file(swpath, url):
