@@ -66,12 +66,14 @@ def test_not_avail(mocker, tmpdir):
 	mocker.patch("requests.get")
 	tmpdir = str(tmpdir)
 	tmpfile = os.path.join(tmpdir, "foo.dat")
-	with pytest.warns(UserWarning):
-		df = sw_daily(update=False, update_interval="0h", swpath_5y=tmpfile)
-	assert df is None
-	with pytest.warns(UserWarning):
-		df = ap_kp_3h(update=False, update_interval="0h", swpath_5y=tmpfile)
-	assert df is None
+	# daily
+	with pytest.raises(IOError):
+		with pytest.warns(UserWarning):
+			sw_daily(update=False, update_interval="0h", swpath_5y=tmpfile)
+	# 3h data
+	with pytest.raises(IOError):
+		with pytest.warns(UserWarning):
+			ap_kp_3h(update=False, update_interval="0h", swpath_5y=tmpfile)
 
 
 def test_daily():
