@@ -18,9 +18,7 @@ the daily sum/averages.
 The data also include the solar f10.7 cm radio fluxes,
 the observed values as well as the 1 AU adjusted values,
 daily values and the 81-day running means.
-The data sources and file format are described at
-<http://celestrak.com/SpaceData/SpaceWx-format.php>
-(see [file_format.txt](file_format.txt) for a local copy of the format description).
+See [Data sources](#data-sources) below.
 
 :warning: This package is in **beta** stage, that is, it works for the most part
 and the interface should not change (much) in future versions.
@@ -130,7 +128,15 @@ it under the terms of the GNU General Public License as published by
 the Free Software Foundation, version 2 (GPLv2), see [local copy](./COPYING.GPLv2)
 or [online version](http://www.gnu.org/licenses/gpl-2.0.html).
 
-The original data can be found at <https://celestrak.com/SpaceData/>
+## Data sources
+
+### Celestrak
+
+The "celestrak" data can be found at <https://celestrak.com/SpaceData/>
 and is included with kind permission from Dr. T.S. Kelso at
 [celestrak](https://celestrak.com),
 for details see the included [COPYING.data](COPYING.data) file.
+
+The data sources and file format are described at
+<http://celestrak.com/SpaceData/SpaceWx-format.php>
+(see [file_format.txt](file_format.txt) for a local copy of the format description).
