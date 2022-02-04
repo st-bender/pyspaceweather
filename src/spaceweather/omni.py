@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # Copyright (c) 2022 Stefan Bender
 #
 # This module is part of pyspaceweather.
