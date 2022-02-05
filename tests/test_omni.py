@@ -29,8 +29,13 @@ _TEST_URL = os.path.join(OMNI_URL_BASE, _TEST_FILE)
 def test_cache(mocker, tmpdir):
 	mocker.patch("requests.get")
 	tmpdir = str(tmpdir)
+	# Check non-existent file
 	cache_omnie(year=_TEST_YEAR, local_path=tmpdir)
 	requests.get.assert_called_once_with(_TEST_URL, stream=True)
+	# Check non-existent (sub)dir
+	tmppath = os.path.join(tmpdir, "data")
+	cache_omnie(year=_TEST_YEAR, local_path=tmppath)
+	requests.get.assert_called_with(_TEST_URL, stream=True)
 
 
 def test_auto_update(mocker, tmpdir):
