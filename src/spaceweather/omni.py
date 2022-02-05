@@ -322,8 +322,11 @@ def omnie_hourly(
 	if not os.path.exists(omnie_file):
 		warn("Could not find OMNI2 data {0}.".format(omnie_file))
 		if cache:
-			warn("Trying to cache to `{0}'".format(omnie_file))
-			_dl_file(omnie_file, os.path.join(url_base, basename))
+			cache_omnie(
+				year,
+				prefix=prefix, ext=ext,
+				local_path=local_path, url_base=url_base,
+			)
 		else:
 			warn(
 				"Local data files not found, pass `cache=True` "
