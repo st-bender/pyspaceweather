@@ -70,7 +70,7 @@ if __name__ == "__main__":
 		packages=find_packages("src"),
 		package_dir={"": "src"},
 		package_data={
-			"spaceweather": ["data/.cache"],
+			"spaceweather": ["data/.cache", "data/omni_extended/.cache"],
 		},
 		include_package_data=True,
 		install_requires=[
