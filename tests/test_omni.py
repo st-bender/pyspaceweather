@@ -24,6 +24,7 @@ from spaceweather.omni import OMNI_URL_BASE, OMNI_PREFIX, OMNI_EXT
 _TEST_YEAR = 2012
 _TEST_FILE = "{0}_{1:04d}.{2}".format(OMNI_PREFIX, _TEST_YEAR, OMNI_EXT)
 _TEST_URL = os.path.join(OMNI_URL_BASE, _TEST_FILE)
+_TEST_PATH = os.path.join(".", "tests")
 
 
 def test_cache(mocker, tmpdir):
@@ -59,7 +60,7 @@ def test_not_avail(mocker, tmpdir):
 @pytest.mark.parametrize("hour", range(0, 24, 3))
 @pytest.mark.parametrize("index", ["Ap", "Kp"])
 def test_hourly(hour, index):
-	df1 = omnie_hourly(2000)
+	df1 = omnie_hourly(2000, local_path=_TEST_PATH, prefix="omni2t")
 	df2 = sw_daily()
 	ind_name = "{0}{1}".format(index, hour)
 	df1_ind = df1[df1["hour"] == hour][index]
@@ -76,7 +77,7 @@ def test_hourly(hour, index):
 	]
 )
 def test_3hourly_index(name, result):
-	df = omnie_hourly(2000)
+	df = omnie_hourly(2000, local_path=_TEST_PATH, prefix="omni2t")
 	np.testing.assert_allclose(
 		df.loc[
 			pd.date_range(
