@@ -84,12 +84,24 @@ $ py.test [-v] --doctest-glob='*.md'
 
 ## Usage
 
-The python module itself is named `spaceweather` and is imported as usual.
-This module provides mainly two functions `sw_daily()` for the daily data
+The python module itself is named `spaceweather` and is imported as usual
+by calling
+
+```python
+>>> import spaceweather
+
+```
+
+### Celestrak
+
+The module provides two functions to access the data from
+[Celestrak](https://celestrak.com/SpaceData/),
+`sw_daily()` for the daily data
 as available from the website, and `ap_kp_3h()` for the 3h Ap and Kp values.
 Both functions return `pandas.DataFrame`s.
-The index data file can be updated on request by calling `update_data()`,
-when the data available in the packaged version are too old.
+When the data available in the packaged version are too old for the use case,
+they can be updated by passing `update=True` to both functions, or by calling
+`update_data()` explicitly.
 
 ```python
 >>> import spaceweather as sw
@@ -115,10 +127,49 @@ Name: 2000-01-01 01:30:00, dtype: float64
 
 ```
 
+### OMNI
+
+The [OMNI](https://omniweb.gsfc.nasa.gov/ow.html) 1-hour yearly data
+are accessible via `omnie_hourly(<year>)` or `read_omnie(<file>)`.
+Both functions should work with the OMNI2 standard and extended text files.
+If the data are not already available locally, they can be cached by passing
+`cache=True` to that function or by calling `cache_omnie(<year>)` explicitly.
+As for the Celestrak data, `pandas.DataFrame`s are returned.
+
+```python
+>>> import spaceweather as sw
+>>> df_h = sw.omnie_hourly(2000)  # doctest: +SKIP
+>>> # or with automatic caching (downloading)
+>>> df_h = sw.omnie_hourly(2000, cache=True)  # doctest: +SKIP
+
+```
+
+If the data are already available locally, you can point the parser
+to that location:
+
+```python
+>>> import spaceweather as sw
+>>> df_h = sw.omnie_hourly(2000, local_path="/path/to/omni/data/")  # doctest: +SKIP
+
+```
+
+Another option is to provide a filename directly to `read_omnie()`:
+
+```python
+>>> import spaceweather as sw
+>>> df = sw.read_omnie("/path/to/omni/data/file.dat")  # doctest: +SKIP
+
+```
+
+
+### Reference
+
 Basic class and method documentation is accessible via `pydoc`:
 
 ```sh
 $ pydoc spaceweather
+$ pydoc spaceweather.celestrak
+$ pydoc spaceweather.omni
 ```
 
 ## License
