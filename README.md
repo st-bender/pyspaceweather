@@ -213,20 +213,20 @@ J. Geophys. Res., 110, A02104, 2005.
 
 Please acknowledge the OMNI sources, using the following DOIs for the OMNI datasets:
 
-Papitashvili, Natalia E. and King, Joseph H. (2022), "OMNI 1-min Data" [Data set], NASA Space
-Physics Data Facility, <https://doi.org/10.48322/45bb-8792>
+Papitashvili, Natalia E. and King, Joseph H. (2022), "OMNI 1-min Data" [Data set],
+NASA Space Physics Data Facility, <https://doi.org/10.48322/45bb-8792>
 
-Papitashvili, Natalia E. and King, Joseph H. (2022), "OMNI 5-min Data" [Data set], NASA Space
-Physics Data Facility, <https://doi.org/10.48322/gbpg-5r77>
+Papitashvili, Natalia E. and King, Joseph H. (2022), "OMNI 5-min Data" [Data set],
+NASA Space Physics Data Facility, <https://doi.org/10.48322/gbpg-5r77>
 
-Papitashvili, Natalia E. and King, Joseph H. (2022), "OMNI Hourly Data" [Data Set], NASA Space
-Physics Data Facility, <https://doi.org/10.48322/1shr-ht18>
+Papitashvili, Natalia E. and King, Joseph H. (2022), "OMNI Hourly Data" [Data Set],
+NASA Space Physics Data Facility, <https://doi.org/10.48322/1shr-ht18>
 
-Papitashvili, Natalia E. and King, Joseph H. (2022), "OMNI Daily Data" [Data set], NASA Space
-Physics Data Facility, <https://doi.org/10.48322/5fmx-hv56>
+Papitashvili, Natalia E. and King, Joseph H. (2022), "OMNI Daily Data" [Data set],
+NASA Space Physics Data Facility, <https://doi.org/10.48322/5fmx-hv56>
 
-Papitashvili, Natalia E. and King, Joseph H. (2022), "OMNI 27-Day Data" [Data set], NASA Space
-Physics Data Facility, <https://doi.org/10.48322/nmh3-jf75>
+Papitashvili, Natalia E. and King, Joseph H. (2022), "OMNI 27-Day Data" [Data set],
+NASA Space Physics Data Facility, <https://doi.org/10.48322/nmh3-jf75>
 
 The OMNI data are also available from CDAWeb, and thus available via various other methods
 <https://cdaweb.gsfc.nasa.gov/alternative_access_methods.html>
