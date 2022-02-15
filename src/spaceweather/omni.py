@@ -283,8 +283,8 @@ def omnie_hourly(
 	Use `local_path` to set a custom location if you
 	have the omni data already available.
 
-	Parameters:
-	-----------
+	Parameters
+	----------
 	year: int
 		Year of the data.
 	prefix: str, optional, default 'omni2'
