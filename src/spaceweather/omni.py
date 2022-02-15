@@ -43,7 +43,7 @@ def cache_omnie(
 ):
 	"""Download OMNI2 data to local cache
 
-	Downloads the OMNI2 (extended) data file to the local location.
+	Downloads the OMNI2 (extended) data file from [#]_ to the local location.
 
 	.. [#] https://spdf.gsfc.nasa.gov/pub/data/omni/low_res_omni/extended/
 
