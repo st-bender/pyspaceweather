@@ -25,6 +25,7 @@ from .core import _assert_file_exists, _dl_file
 __all__ = [
 	"cache_omnie",
 	"omnie_hourly",
+	"omnie_mask_missing",
 	"read_omnie",
 ]
 
@@ -32,6 +33,66 @@ OMNI_URL_BASE = "https://spdf.gsfc.nasa.gov/pub/data/omni/low_res_omni/extended"
 OMNI_PREFIX, OMNI_EXT = "omni2", "dat"
 OMNI_SUBDIR = "omni_extended"
 LOCAL_PATH = resource_filename(__name__, os.path.join("data", OMNI_SUBDIR))
+
+_OMNI_MISSING = {
+	"year": None,
+	"doy": None,
+	"hour": None,
+	"bsrn": 9999,
+	"id_imf": 99,
+	"id_sw": 99,
+	"n_imf": 999,
+	"n_plasma": 999,
+	"B_mag_avg": 999.9,
+	"B_mag": 999.9,
+	"theta_B": 999.9,
+	"phi_B": 999.9,
+	"B_x": 999.9,
+	"B_y_GSE": 999.9,
+	"B_z_GSE": 999.9,
+	"B_y_GSM": 999.9,
+	"B_z_GSM": 999.9,
+	"sigma_B_mag_avg": 999.9,
+	"sigma_B_mag": 999.9,
+	"sigma_B_x_GSE": 999.9,
+	"sigma_B_y_GSE": 999.9,
+	"sigma_B_z_GSE": 999.9,
+	"T_p": 9999999.0,
+	"n_p": 999.9,
+	"v_plasma": 9999.0,
+	"phi_v": 999.9,
+	"theta_v": 999.9,
+	"n_alpha_n_p": 9.999,
+	"p_flow": 99.99,
+	"sigma_T": 9999999.0,
+	"sigma_n": 999.9,
+	"sigma_v": 9999.0,
+	"sigma_phi_v": 999.9,
+	"sigma_theta_v": 999.9,
+	"sigma_na_np": 9.999,
+	"E": 999.99,
+	"beta_plasma": 999.99,
+	"mach": 999.9,
+	"Kp": 9.9,
+	"R": 999,
+	"Dst": 99999,
+	"AE": 9999,
+	"p_01MeV": 999999.99,
+	"p_02MeV": 99999.99,
+	"p_04MeV": 99999.99,
+	"p_10MeV": 99999.99,
+	"p_30MeV": 99999.99,
+	"p_60MeV": 99999.99,
+	"flag": 0,
+	"Ap": 999,
+	"f107_adj": 999.9,
+	"PC": 999.9,
+	"AL": 99999,
+	"AU": 99999,
+	"mach_mag": 99.9,
+	"Lya": 0.999999,
+	"QI_p": 9.9999
+}
 
 
 def cache_omnie(
@@ -82,6 +143,38 @@ def cache_omnie(
 		url = os.path.join(url_base, basename)
 		logging.info("%s not found, downloading from %s.", omnie_file, url)
 		_dl_file(omnie_file, url)
+
+
+def omnie_mask_missing(df):
+	"""Mask missing values with NaN
+
+	Marks missing values in the OMNI2 data set by NaN.
+	The missing value indicating numbers are taken from the file format description
+	https://spdf.gsfc.nasa.gov/pub/data/omni/low_res_omni/extended/aareadme_extended
+
+	Parameters
+	----------
+	df: pandas.DataFrame
+		The OMNI2 data set, e.g. from ``omnie_hourly()`` or ``read_omnie()``.
+
+	Returns
+	-------
+	df: pandas.DataFrame
+		The same dataframe with the missing values masked with numpy.nan.
+
+	Note
+	----
+	This function returns a copy of the dataframe, and all the integer columns
+	will be converted to float to support NaN.
+	"""
+	res = df.copy()
+	for _c in df.columns:
+		_m = _OMNI_MISSING.get(_c, None)
+		if _m is None:
+			continue
+		_mask = df[_c] != _m
+		res[_c] = df[_c].where(_mask)
+	return res
 
 
 def read_omnie(omnie_file):
