@@ -18,7 +18,7 @@ import pandas as pd
 
 import pytest
 
-from spaceweather import cache_omnie, omnie_hourly, sw_daily
+from spaceweather import cache_omnie, omnie_hourly, omnie_mask_missing, sw_daily
 from spaceweather.omni import OMNI_URL_BASE, OMNI_PREFIX, OMNI_EXT
 
 _TEST_YEAR = 2012
@@ -61,6 +61,8 @@ def test_not_avail(mocker, tmpdir):
 @pytest.mark.parametrize("index", ["Ap", "Kp"])
 def test_hourly(hour, index):
 	df1 = omnie_hourly(2000, local_path=_TEST_PATH, prefix="omni2t")
+	# The last row is for the missing value test.
+	df1 = df1.iloc[:-1]
 	df2 = sw_daily()
 	ind_name = "{0}{1}".format(index, hour)
 	df1_ind = df1[df1["hour"] == hour][index]
@@ -87,3 +89,15 @@ def test_3hourly_index(name, result):
 		result,
 		rtol=1e-12,
 	)
+
+
+def test_mask_missing():
+	df = omnie_hourly(2000, local_path=_TEST_PATH, prefix="omni2t")
+	dfp = omnie_mask_missing(df)
+	# The last row should contain all NaNs.
+	dfp = dfp.iloc[-1]
+	for v in filter(
+		lambda n: n not in ["year", "doy", "hour"],
+		dfp.index,
+	):
+		assert np.isnan(dfp[v])
