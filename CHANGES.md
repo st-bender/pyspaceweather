@@ -1,6 +1,14 @@
 Changelog
 =========
 
+v0.2.1 (unreleased)
+-------------------
+
+### New
+
+- Support for OMNI2 missing values
+
+
 v0.2.0 (2022-02-13)
 -------------------
 
