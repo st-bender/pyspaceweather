@@ -55,10 +55,11 @@ def get_file_age(swpath, relative=True):
 		Raises ``IOError`` if the file is not found.
 	"""
 	_assert_file_exists(swpath)
-	for line in open(swpath):
-		if line.startswith("UPDATED"):
-			# closes the file automatically
-			break
+	with open(swpath) as fp:
+		for line in fp:
+			if line.startswith("UPDATED"):
+				# closes the file automatically
+				break
 	upd = pd.to_datetime(line.lstrip("UPDATED"), utc=True)
 	if relative:
 		return pd.Timestamp.utcnow() - upd
