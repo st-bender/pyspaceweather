@@ -27,6 +27,16 @@ _TEST_URL = os.path.join(OMNI_URL_BASE, _TEST_FILE)
 _TEST_PATH = os.path.join(".", "tests")
 
 
+@pytest.fixture(scope="module")
+def df_d():
+	return sw_daily()
+
+
+@pytest.fixture(scope="module")
+def df_o():
+	return omnie_hourly(2000, local_path=_TEST_PATH, prefix="omni2t")
+
+
 def test_cache(mocker, tmpdir):
 	mocker.patch("requests.get")
 	tmpdir = str(tmpdir)
@@ -59,11 +69,11 @@ def test_not_avail(mocker, tmpdir):
 
 @pytest.mark.parametrize("hour", range(0, 24, 3))
 @pytest.mark.parametrize("index", ["Ap", "Kp"])
-def test_hourly(hour, index):
-	df1 = omnie_hourly(2000, local_path=_TEST_PATH, prefix="omni2t")
+def test_hourly(hour, index, df_d, df_o):
+	df1 = df_o
 	# The last row is for the missing value test.
 	df1 = df1.iloc[:-1]
-	df2 = sw_daily()
+	df2 = df_d
 	ind_name = "{0}{1}".format(index, hour)
 	df1_ind = df1[df1["hour"] == hour][index]
 	df2_ind = df2[ind_name].loc[df1_ind.index.date].rename(index)
@@ -78,8 +88,8 @@ def test_hourly(hour, index):
 		("Kp", np.array([5.3, 4.7, 4.0, 3.3, 4.3, 3.0, 4.3, 3.7])),
 	]
 )
-def test_3hourly_index(name, result):
-	df = omnie_hourly(2000, local_path=_TEST_PATH, prefix="omni2t")
+def test_3hourly_index(name, result, df_o):
+	df = df_o
 	np.testing.assert_allclose(
 		df.loc[
 			pd.date_range(
@@ -91,8 +101,8 @@ def test_3hourly_index(name, result):
 	)
 
 
-def test_mask_missing():
-	df = omnie_hourly(2000, local_path=_TEST_PATH, prefix="omni2t")
+def test_mask_missing(df_o):
+	df = df_o
 	dfp = omnie_mask_missing(df)
 	# The last row should contain all NaNs.
 	dfp = dfp.iloc[-1]
