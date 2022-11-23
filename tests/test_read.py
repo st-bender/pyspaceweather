@@ -25,6 +25,11 @@ from spaceweather import (
 from spaceweather.celestrak import DL_URL_5Y
 
 
+@pytest.fixture(scope="module")
+def df_3h():
+	return ap_kp_3h()
+
+
 def test_age():
 	now = pd.Timestamp.utcnow()
 	for p in [SW_PATH_ALL, SW_PATH_5Y]:
@@ -98,8 +103,8 @@ def test_daily():
 		("Kp", np.array([5.3, 4.7, 4.0, 3.3, 4.3, 3.0, 4.3, 3.7])),
 	]
 )
-def test_3hourly_index(name, result):
-	df = ap_kp_3h()
+def test_3hourly_index(name, result, df_3h):
+	df = df_3h
 	np.testing.assert_allclose(
 		df.loc[
 			pd.date_range(
