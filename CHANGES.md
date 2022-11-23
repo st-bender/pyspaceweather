@@ -1,6 +1,19 @@
 Changelog
 =========
 
+v0.2.2 (2022-11-24)
+-------------------
+
+### Fixes
+
+- Fixes an unclosed resource file warning when calculating the file age
+  (GH https://github.com/st-bender/pyspaceweather/issues/1)
+
+### Updates
+
+- Uses pytest.fixtures to speed up tests
+
+
 v0.2.1 (2022-02-18)
 -------------------
 
