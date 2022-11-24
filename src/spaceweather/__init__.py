@@ -8,7 +8,7 @@
 """Python interface for space weather indices
 
 """
-__version__ = "0.2.1"
+__version__ = "0.2.2"
 
 from .celestrak import *
 from .omni import *
