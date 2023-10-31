@@ -1,6 +1,16 @@
 Changelog
 =========
 
+v0.2.3 (unreleased)
+-------------------
+
+### Changes
+
+- Updates space weather indices from celestrak (observed until 2023-10-31)
+- Fixes documentation rendering on readthedocs
+  (https://pyspaceweather.readthedocs.io/)
+
+
 v0.2.2 (2022-11-24)
 -------------------
 
