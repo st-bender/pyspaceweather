@@ -7,4 +7,6 @@ dependencies:
     - python=3
     - numpy
     - numpydoc
+    - recommonmark
     - requests
+    - sphinx_rtd_theme
