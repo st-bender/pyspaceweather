@@ -33,10 +33,15 @@ jobs:
           path: ~/.cache/pip
           restore-keys: |
             ${{ runner.os }}-pip-
-      - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v2
+      - name: Update package list
+        if: startsWith(matrix.os, 'ubuntu')
+        run: |
+          sudo apt-get update
+      - name: Set up Python ${{ matrix.python-version }} on ${{ matrix.os }}
+        uses: MatteoH2O1999/setup-python@v1
         with:
           python-version: ${{ matrix.python-version }}
+          cache-build: true
       - run: |
           lsb_release -a
           uname -a
