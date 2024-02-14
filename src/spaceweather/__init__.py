@@ -11,4 +11,5 @@
 __version__ = "0.2.4"
 
 from .celestrak import *
+from .gfz import *
 from .omni import *
