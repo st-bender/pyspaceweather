@@ -1,11 +1,12 @@
 Changelog
 =========
 
-v0.2.4 (unreleased)
+v0.2.4 (2024-02-14)
 -------------------
 
 ### Changes
 
+- Updates space weather indices from celestrak (observed until 2024-02-13)
 - CI updates
 
 
