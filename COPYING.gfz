@@ -1,0 +1,14 @@
+GFZ provides Kp and its derived indices and the figures on this website with
+the Creative Commons Attribution 4.0 International (CC BY 4.0) license
+(see file COPYING.CCby4.0 or online version at https://creativecommons.org/licenses/by/4.0/).
+Please refer to GFZ German Research Centre for Geosciences as data source.
+GFZ contributes with Kp to the International Service of Geomagnetic Indices (ISGI) of IAGA.
+The indices and their provision (including a data publication with DOI)
+are described in Matzka et al. (2021) [1].
+
+[1] Matzka, J., Stolle, C., Yamazaki, Y., Bronkalla, O., & Morschhauser, A. (2021),
+The geomagnetic Kp index and derived indices of geomagnetic activity,
+Space Weather, volume 19, issue 5, e2020SW002641. https://doi.org/10.1029/2020SW002641
+
+data doi: 10.5880.Kp.0001
+url: https://datapub.gfz-potsdam.de/download/10.5880.Kp.0001/
