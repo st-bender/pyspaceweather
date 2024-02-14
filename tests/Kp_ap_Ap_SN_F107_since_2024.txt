@@ -1,0 +1,71 @@
+# PURPOSE: This file distributes the geomagnetic planetary three-hour index Kp and associated geomagnetic indices as well as relevant solar indices.
+# LICENSE: CC BY 4.0, except for the sunspot numbers contained in this file, which have the CC BY-NC 4.0 license
+# SOURCE: Geomagnetic Observatory Niemegk, GFZ German Research Centre for Geosciences
+# PLEASE CITE: Matzka, J., Stolle, C., Yamazaki, Y., Bronkalla, O. and Morschhauser, A., 2021. The geomagnetic Kp index 
+# and derived indices of geomagnetic activity. Space Weather, https://doi.org/10.1029/2020SW002641
+#
+# Kp, ap and Ap
+# The three-hourly equivalent planetary amplitude ap is derived from Kp and the daily equivalent planetary amplitude Ap is the daily mean of ap.
+# Kp is unitless. Ap and ap are unitless and can be multiplied by 2 nT to yield the average geomagnetic disturbance at 50 degree geomagnetic latitude.
+# Kp, ap and Ap were introduced by Bartels (1949, 1957) and are produced by Geomagnetic Observatory Niemegk, GFZ German Research Centre for Geosciences.
+# Described in: Matzka et al. (2021), see reference above.
+# Data publication: Matzka, J., Bronkalla, O., Tornow, K., Elger, K. and Stolle, C., 2021. Geomagnetic Kp index. V. 1.0. GFZ Data Services, 
+# https://doi.org/10.5880/Kp.0001
+# Note: the most recent values are nowcast values and will be replaced by definitive values as soon as they become available.
+# 
+# International Sunspot Number SN
+# The international sunspot number SN (written with subscript N) is given as the daily total sunspot number version 2.0 introduced in 2015.
+# The sunspot data is available under the licence CC BY-NC 4.0 from WDC-SILSO, Royal Observatory of Belgium, Brussels. Described in:
+# Clette, F., Lefevre, L., 2016. The New Sunspot Number: assembling all corrections. Solar Physics, 291, https://doi.org/10.1007/s11207-016-1014-y 
+# Note: the most recent values are preliminary and replaced by definitive values as soon as they become available.
+#
+# F10.7 Solar Radio Flux
+# Local noon-time observed (F10.7obs) and adjusted (F10.7adj) solar radio flux F10.7 in s.f.u. (10^-22 W m^-2 Hz^-1) is provided by 
+# Dominion Radio Astrophysical Observatory and Natural Resources Canada.
+# Described in: Tapping, K.F., 2013. The 10.7 cm solar radio flux (F10.7). Space Weather, 11, 394-406, https://doi.org/10.1002/swe.20064 
+# Note: For ionospheric and atmospheric studies the use of F10.7obs is recommended.
+# 
+# Short file description (for a detailed file description, see Kp_ap_Ap_SN_F107_format.txt):
+# 40 header lines, all starting with #
+# ASCII, blank separated and fixed length, missing data indicated by -1.000 for Kp, -1 for ap and SN, -1.0 for F10.7
+# YYYY MM DD is date of UT day, days is days since 1932-01-01 00:00 UT to start of UT day, days_m is days since 1932-01-01 00:00 UT to midday of UT day
+# BSR is Bartels solar rotation number, dB is day within BSR 
+# Kp1 to Kp8 (Kp for the eight eighth of the UT day), ap1 to ap8 (ap for the eight eighth of the UT day), Ap, SN, F10.7obs, F10.7adj
+# D indicates if the Kp and SN values are definitive or preliminary. D=0: Kp and SN preliminary; D=1: Kp definitive, SN preliminary; D=2 Kp and SN definitive
+#
+#
+# The format for each line is (i stands for integer, f for float):
+#iii ii ii iiiii fffff.f iiii ii ff.fff ff.fff ff.fff ff.fff ff.fff ff.fff ff.fff ff.fff iiii iiii iiii iiii iiii iiii iiii iiii  iiii iii ffffff.f ffffff.f i
+# The parameters in each line are:
+#YYY MM DD  days  days_m  Bsr dB    Kp1    Kp2    Kp3    Kp4    Kp5    Kp6    Kp7    Kp8  ap1  ap2  ap3  ap4  ap5  ap6  ap7  ap8    Ap  SN F10.7obs F10.7adj D
+2024 01 01 33603 33603.5 2596 25  0.667  0.333  0.667  1.333  2.000  3.000  3.333  4.000    3    2    3    5    7   15   18   27    10  54    135.7    131.2 1
+2024 01 02 33604 33604.5 2596 26  2.667  2.333  0.667  2.000  2.333  2.667  2.000  0.667   12    9    3    7    9   12    7    3     8  66    142.1    137.4 1
+2024 01 03 33605 33605.5 2596 27  2.667  2.667  1.000  1.667  1.667  2.667  3.333  3.000   12   12    4    6    6   12   18   15    11  57    140.2    135.5 1
+2024 01 04 33606 33606.5 2597  1  1.333  0.667  1.667  0.667  0.667  1.333  1.000  2.667    5    3    6    3    3    5    4   12     5  98    125.8    121.6 1
+2024 01 05 33607 33607.5 2597  2  2.000  1.667  0.333  1.000  1.333  1.667  0.333  0.333    7    6    2    4    5    6    2    2     4 117    152.7    147.6 1
+2024 01 06 33608 33608.5 2597  3  0.333  1.000  0.000  0.000  0.000  0.000  0.667  1.000    2    4    0    0    0    0    3    4     2 144    159.4    154.1 1
+2024 01 07 33609 33609.5 2597  4  0.000  0.000  0.000  0.333  0.333  0.333  0.000  0.000    0    0    0    2    2    2    0    0     1 164    167.1    161.6 1
+2024 01 08 33610 33610.5 2597  5  0.000  0.000  0.000  0.333  1.000  0.667  1.333  2.000    0    0    0    2    4    3    5    7     3 162    176.2    170.4 1
+2024 01 09 33611 33611.5 2597  6  2.333  1.000  2.333  0.667  0.667  1.333  0.333  1.000    9    4    9    3    3    5    2    4     5 148    175.9    170.1 1
+2024 01 10 33612 33612.5 2597  7  1.333  1.667  1.333  2.000  2.333  1.667  2.000  1.667    5    6    5    7    9    6    7    6     6 164    186.0    179.9 1
+2024 01 11 33613 33613.5 2597  8  0.667  1.333  1.667  1.333  2.000  1.333  0.667  1.667    3    5    6    5    7    5    3    6     5 179    192.5    186.2 1
+2024 01 12 33614 33614.5 2597  9  0.000  1.333  0.333  1.000  1.333  1.333  0.667  1.000    0    5    2    4    5    5    3    4     4 179    186.4    180.3 1
+2024 01 13 33615 33615.5 2597 10  0.333  0.000  0.333  0.667  0.667  0.667  0.333  0.667    2    0    2    3    3    3    2    3     2 186    185.4    179.4 1
+2024 01 14 33616 33616.5 2597 11  0.667  1.333  1.667  2.000  1.667  2.000  2.000  2.000    3    5    6    7    6    7    7    7     6 157    187.9    181.7 1
+2024 01 15 33617 33617.5 2597 12  1.000  0.667  1.667  1.667  2.333  0.333  1.333  1.667    4    3    6    6    9    2    5    6     5 140    182.5    176.6 1
+2024 01 16 33618 33618.5 2597 13  2.667  2.000  0.667  0.667  0.667  1.000  1.000  0.333   12    7    3    3    3    4    4    2     5 131    179.6    173.8 1
+2024 01 17 33619 33619.5 2597 14  0.667  0.333  1.333  0.667  0.667  0.667  0.667  1.000    3    2    5    3    3    3    3    4     3 146    174.1    168.5 1
+2024 01 18 33620 33620.5 2597 15  1.000  1.000  1.000  1.667  1.333  1.333  2.333  2.333    4    4    4    6    5    5    9    9     6 129    162.3    157.1 1
+2024 01 19 33621 33621.5 2597 16  1.333  2.667  1.667  1.333  1.667  1.667  1.333  2.333    5   12    6    5    6    6    5    9     7 141    157.4    152.4 1
+2024 01 20 33622 33622.5 2597 17  1.667  2.333  1.333  1.000  2.000  1.667  1.333  1.333    6    9    5    4    7    6    5    5     6 132    166.3    161.0 1
+2024 01 21 33623 33623.5 2597 18  0.000  1.333  1.333  2.000  1.667  1.000  0.667  1.000    0    5    5    7    6    4    3    4     4 154    178.5    172.9 1
+2024 01 22 33624 33624.5 2597 19  0.667  0.333  1.000  1.333  1.667  2.000  3.000  3.333    3    2    4    5    6    7   15   18     8 164    196.1    189.9 1
+2024 01 23 33625 33625.5 2597 20  2.000  2.667  1.667  1.000  1.333  1.000  1.000  2.000    7   12    6    4    5    4    4    7     6 144    180.3    174.7 1
+2024 01 24 33626 33626.5 2597 21  3.333  3.000  3.000  1.667  1.333  0.333  0.333  0.333   18   15   15    6    5    2    2    2     8 122    172.0    166.6 1
+2024 01 25 33627 33627.5 2597 22  0.333  0.667  0.667  1.333  1.667  1.667  1.333  2.333    2    3    3    5    6    6    5    9     5  92    160.5    155.6 1
+2024 01 26 33628 33628.5 2597 23  0.333  1.333  0.333  0.667  2.000  1.667  1.333  1.667    2    5    2    3    7    6    5    6     4  79    156.7    151.9 1
+2024 01 27 33629 33629.5 2597 24  2.333  1.333  1.000  1.000  0.667  0.667  0.667  0.667    9    5    4    4    3    3    3    3     4  63    148.1    143.6 1
+2024 01 28 33630 33630.5 2597 25  0.667  1.000  1.000  2.000  1.333  1.667  3.000  3.000    3    4    4    7    5    6   15   15     7  68    141.1    136.8 1
+2024 01 29 33631 33631.5 2597 26  2.667  2.000  1.000  0.667  2.333  2.000  2.333  2.000   12    7    4    3    9    7    9    7     7  70    140.3    136.1 1
+2024 01 30 33632 33632.5 2597 27  2.000  2.333  1.667  1.667  1.000  1.000  2.333  2.000    7    9    6    6    4    4    9    7     6  70    135.0    131.0 1
+2024 01 31 33633 33633.5 2598  1  2.000  2.333  1.333  1.333  1.333  2.000  2.000  1.000    7    9    5    5    5    7    7    4     6  94    136.2    132.2 1

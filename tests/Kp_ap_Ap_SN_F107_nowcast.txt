@@ -1,0 +1,64 @@
+# PURPOSE: This file distributes the geomagnetic planetary three-hour index Kp and associated geomagnetic indices as well as relevant solar indices.
+# LICENSE: CC BY 4.0, except for the sunspot numbers contained in this file, which have the CC BY-NC 4.0 license
+# SOURCE: Geomagnetic Observatory Niemegk, GFZ German Research Centre for Geosciences
+# PLEASE CITE: Matzka, J., Stolle, C., Yamazaki, Y., Bronkalla, O. and Morschhauser, A., 2021. The geomagnetic Kp index 
+# and derived indices of geomagnetic activity. Space Weather, https://doi.org/10.1029/2020SW002641
+#
+# Kp, ap and Ap
+# The three-hourly equivalent planetary amplitude ap is derived from Kp and the daily equivalent planetary amplitude Ap is the daily mean of ap.
+# Kp is unitless. Ap and ap are unitless and can be multiplied by 2 nT to yield the average geomagnetic disturbance at 50 degree geomagnetic latitude.
+# Kp, ap and Ap were introduced by Bartels (1949, 1957) and are produced by Geomagnetic Observatory Niemegk, GFZ German Research Centre for Geosciences.
+# Described in: Matzka et al. (2021), see reference above.
+# Data publication: Matzka, J., Bronkalla, O., Tornow, K., Elger, K. and Stolle, C., 2021. Geomagnetic Kp index. V. 1.0. GFZ Data Services, 
+# https://doi.org/10.5880/Kp.0001
+# Note: the most recent values are nowcast values and will be replaced by definitive values as soon as they become available.
+# 
+# International Sunspot Number SN
+# The international sunspot number SN (written with subscript N) is given as the daily total sunspot number version 2.0 introduced in 2015.
+# The sunspot data is available under the licence CC BY-NC 4.0 from WDC-SILSO, Royal Observatory of Belgium, Brussels. Described in:
+# Clette, F., Lefevre, L., 2016. The New Sunspot Number: assembling all corrections. Solar Physics, 291, https://doi.org/10.1007/s11207-016-1014-y 
+# Note: the most recent values are preliminary and replaced by definitive values as soon as they become available.
+#
+# F10.7 Solar Radio Flux
+# Local noon-time observed (F10.7obs) and adjusted (F10.7adj) solar radio flux F10.7 in s.f.u. (10^-22 W m^-2 Hz^-1) is provided by 
+# Dominion Radio Astrophysical Observatory and Natural Resources Canada.
+# Described in: Tapping, K.F., 2013. The 10.7 cm solar radio flux (F10.7). Space Weather, 11, 394-406, https://doi.org/10.1002/swe.20064 
+# Note: For ionospheric and atmospheric studies the use of F10.7obs is recommended.
+# 
+# Short file description (for a detailed file description, see Kp_ap_Ap_SN_F107_format.txt):
+# 40 header lines, all starting with #
+# ASCII, blank separated and fixed length, missing data indicated by -1.000 for Kp, -1 for ap and SN, -1.0 for F10.7
+# YYYY MM DD is date of UT day, days is days since 1932-01-01 00:00 UT to start of UT day, days_m is days since 1932-01-01 00:00 UT to midday of UT day
+# BSR is Bartels solar rotation number, dB is day within BSR 
+# Kp1 to Kp8 (Kp for the eight eighth of the UT day), ap1 to ap8 (ap for the eight eighth of the UT day), Ap, SN, F10.7obs, F10.7adj
+# D indicates if the Kp and SN values are definitive or preliminary. D=0: Kp and SN preliminary; D=1: Kp definitive, SN preliminary; D=2 Kp and SN definitive
+#
+#
+# The format for each line is (i stands for integer, f for float):
+#iii ii ii iiiii fffff.f iiii ii ff.fff ff.fff ff.fff ff.fff ff.fff ff.fff ff.fff ff.fff iiii iiii iiii iiii iiii iiii iiii iiii  iiii iii ffffff.f ffffff.f i
+# The parameters in each line are:
+#YYY MM DD  days  days_m  Bsr dB    Kp1    Kp2    Kp3    Kp4    Kp5    Kp6    Kp7    Kp8  ap1  ap2  ap3  ap4  ap5  ap6  ap7  ap8    Ap  SN F10.7obs F10.7adj D
+2024 01 21 33623 33623.5 2597 18  0.000  1.333  1.333  2.000  1.667  1.000  0.667  1.000    0    5    5    7    6    4    3    4     4 154    178.5    172.9 1
+2024 01 22 33624 33624.5 2597 19  0.667  0.333  1.000  1.333  1.667  2.000  3.000  3.333    3    2    4    5    6    7   15   18     8 164    196.1    189.9 1
+2024 01 23 33625 33625.5 2597 20  2.000  2.667  1.667  1.000  1.333  1.000  1.000  2.000    7   12    6    4    5    4    4    7     6 144    180.3    174.7 1
+2024 01 24 33626 33626.5 2597 21  3.333  3.000  3.000  1.667  1.333  0.333  0.333  0.333   18   15   15    6    5    2    2    2     8 122    172.0    166.6 1
+2024 01 25 33627 33627.5 2597 22  0.333  0.667  0.667  1.333  1.667  1.667  1.333  2.333    2    3    3    5    6    6    5    9     5  92    160.5    155.6 1
+2024 01 26 33628 33628.5 2597 23  0.333  1.333  0.333  0.667  2.000  1.667  1.333  1.667    2    5    2    3    7    6    5    6     4  79    156.7    151.9 1
+2024 01 27 33629 33629.5 2597 24  2.333  1.333  1.000  1.000  0.667  0.667  0.667  0.667    9    5    4    4    3    3    3    3     4  63    148.1    143.6 1
+2024 01 28 33630 33630.5 2597 25  0.667  1.000  1.000  2.000  1.333  1.667  3.000  3.000    3    4    4    7    5    6   15   15     7  68    141.1    136.8 1
+2024 01 29 33631 33631.5 2597 26  2.667  2.000  1.000  0.667  2.333  2.000  2.333  2.000   12    7    4    3    9    7    9    7     7  70    140.3    136.1 1
+2024 01 30 33632 33632.5 2597 27  2.000  2.333  1.667  1.667  1.000  1.000  2.333  2.000    7    9    6    6    4    4    9    7     6  70    135.0    131.0 1
+2024 01 31 33633 33633.5 2598  1  2.000  2.333  1.333  1.333  1.333  2.000  2.000  1.000    7    9    5    5    5    7    7    4     6  94    136.2    132.2 1
+2024 02 01 33634 33634.5 2598  2  1.000  1.000  1.667  2.000  0.667  1.333  1.667  0.667    4    4    6    7    3    5    6    3     5 115    136.9    132.9 0
+2024 02 02 33635 33635.5 2598  3  0.333  0.333  1.000  0.667  0.333  0.000  0.000  0.000    2    2    4    3    2    0    0    0     2 118    142.6    138.5 0
+2024 02 03 33636 33636.5 2598  4  0.000  0.667  0.333  0.333  0.000  0.333  0.000  0.333    0    3    2    2    0    2    0    2     1 117    156.4    152.0 0
+2024 02 04 33637 33637.5 2598  5  1.000  1.333  1.000  1.667  0.667  1.000  1.667  3.000    4    5    4    6    3    4    6   15     6 131    170.4    165.6 0
+2024 02 05 33638 33638.5 2598  6  0.333  0.667  1.333  1.333  1.667  2.000  1.667  2.333    2    3    5    5    6    7    6    9     5 162    173.4    168.6 0
+2024 02 06 33639 33639.5 2598  7  3.000  2.333  1.333  1.667  1.667  1.333  1.667  0.667   15    9    5    6    6    5    6    3     7 161    190.3    185.1 0
+2024 02 07 33640 33640.5 2598  8  0.000  0.667  1.333  1.667  1.333  1.000  0.667  1.333    0    3    5    6    5    4    3    5     4 154    188.4    183.3 0
+2024 02 08 33641 33641.5 2598  9  0.667  1.000  0.667  1.667  1.667  1.667  1.667  0.333    3    4    3    6    6    6    6    2     4 163    185.0    180.0 0
+2024 02 09 33642 33642.5 2598 10  1.000  0.000  0.667  1.333  1.667  0.333  0.667  3.000    4    0    3    5    6    2    3   15     5 128    183.4    178.6 0
+2024 02 10 33643 33643.5 2598 11  1.000  1.000  1.333  2.000  1.667  0.667  0.333  1.000    4    4    5    7    6    3    2    4     4 150    193.8    188.7 0
+2024 02 11 33644 33644.5 2598 12  4.333  3.333  3.333  3.000  1.667  2.333  1.333  2.000   32   18   18   15    6    9    5    7    14 151    180.4    175.7 0
+2024 02 12 33645 33645.5 2598 13  1.667  2.000  2.000  0.333  0.333  0.000  0.000  0.333    6    7    7    2    2    0    0    2     3 160    208.3    203.0 0
+2024 02 13 33646 33646.5 2598 14  1.333  2.333  1.333  2.333  1.667  2.667 -1.000 -1.000    5    9    5    9    6   12   -1   -1    -1 135     -1.0     -1.0 0
