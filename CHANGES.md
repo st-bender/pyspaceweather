@@ -1,6 +1,15 @@
 Changelog
 =========
 
+v0.3.0 (unreleased)
+-------------------
+
+### New
+
+- Supports space weather index data from GFZ Potsdam
+  https://kp.gfz-potsdam.de/en/
+
+
 v0.2.4 (2024-02-14)
 -------------------
 
