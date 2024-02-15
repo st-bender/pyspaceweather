@@ -63,11 +63,17 @@ def test_auto_update(mocker, tmpdir):
 	update_gfz(gfzpath_30d=os.path.join(tmpdir, "foo.dat"))
 	requests.get.assert_called_with(GFZ_URL_30D, stream=True)
 	# Should update the last-5-year data
-	gfz_daily(update=True, update_interval="1d")
+	gfz_daily(
+		gfzpath_all=GFZ_PATH_ALL, gfzpath_30d=GFZ_PATH_30D,
+		update=True, update_interval="1d",
+	)
 	requests.get.assert_called_with(GFZ_URL_30D, stream=True)
 	_assert_age(GFZ_PATH_30D, "10d")
 	with pytest.warns(UserWarning):
-		gfz_daily(update=False, update_interval="0h")
+		gfz_daily(
+			gfzpath_all=GFZ_PATH_ALL, gfzpath_30d=GFZ_PATH_30D,
+			update=False, update_interval="0h",
+		)
 
 
 def test_not_avail(mocker, tmpdir):
