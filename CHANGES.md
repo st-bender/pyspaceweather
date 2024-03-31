@@ -9,6 +9,10 @@ v0.3.0 (unreleased)
 - Supports space weather index data from GFZ Potsdam
   https://kp.gfz-potsdam.de/en/
 
+### Fixes
+
+- Fixes downloading OMNI2 on Windows (https://github.com/st-bender/pyspaceweather/issues/2)
+
 
 v0.2.4 (2024-02-14)
 -------------------
