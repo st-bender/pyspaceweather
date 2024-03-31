@@ -17,6 +17,8 @@ from pkg_resources import resource_filename
 import logging
 from warnings import warn
 
+from posixpath import join as urljoin
+
 import numpy as np
 import pandas as pd
 
@@ -140,7 +142,7 @@ def cache_omnie(
 
 	omnie_file = os.path.join(local_path, basename)
 	if not os.path.exists(omnie_file):
-		url = os.path.join(url_base, basename)
+		url = urljoin(url_base, basename)
 		logging.info("%s not found, downloading from %s.", omnie_file, url)
 		_dl_file(omnie_file, url)
 

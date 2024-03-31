@@ -12,6 +12,7 @@
 """
 import os
 import requests
+from posixpath import join as urljoin
 
 import numpy as np
 import pandas as pd
@@ -23,7 +24,7 @@ from spaceweather.omni import OMNI_URL_BASE, OMNI_PREFIX, OMNI_EXT
 
 _TEST_YEAR = 2012
 _TEST_FILE = "{0}_{1:04d}.{2}".format(OMNI_PREFIX, _TEST_YEAR, OMNI_EXT)
-_TEST_URL = os.path.join(OMNI_URL_BASE, _TEST_FILE)
+_TEST_URL = urljoin(OMNI_URL_BASE, _TEST_FILE)
 _TEST_PATH = os.path.join(".", "tests")
 
 
