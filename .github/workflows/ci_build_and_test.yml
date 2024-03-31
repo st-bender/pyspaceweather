@@ -62,7 +62,7 @@ jobs:
       - name: Convert coverage
         run: python -m coverage xml
       - name: Upload coverage report
-        uses: codecov/codecov-action@v4
+        uses: codecov/codecov-action@v3
 
       - name: Upload to Coveralls
         if: startsWith(matrix.os, 'ubuntu') && matrix.python-version != '2.7'
