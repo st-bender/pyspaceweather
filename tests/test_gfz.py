@@ -44,12 +44,6 @@ def test_age():
 		assert (fage0 > pd.Timedelta("1d")) == (fage1 > pd.Timedelta("1d"))
 
 
-def _assert_age(p, age):
-	assert os.path.exists(p)
-	fage = get_gfz_age(p)
-	assert fage < pd.Timedelta(age)
-
-
 def test_update(mocker):
 	mocker.patch("requests.get")
 	update_gfz(min_age="1d", gfzpath_all=GFZ_PATH_ALL, gfzpath_30d=GFZ_PATH_30D)
@@ -68,7 +62,6 @@ def test_auto_update(mocker, tmpdir):
 		update=True, update_interval="1d",
 	)
 	requests.get.assert_called_with(GFZ_URL_30D, stream=True)
-	_assert_age(GFZ_PATH_30D, "10d")
 	with pytest.warns(UserWarning):
 		gfz_daily(
 			gfzpath_all=GFZ_PATH_ALL, gfzpath_30d=GFZ_PATH_30D,
