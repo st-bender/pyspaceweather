@@ -127,6 +127,43 @@ Name: 2000-01-01 01:30:00, dtype: float64
 
 ```
 
+### GFZ
+
+The "GFZ" module supports the ascii and WDC files as offered by the
+[GFZ German Research Centre for Geosciences](https://www.gfz-potsdam.de/en/)
+on their [data page](https://kp.gfz-potsdam.de/en/data).
+In contrast to the official python client, this module reads the data
+from the (downloaded) files and does not access the web service API.
+The interface is mostly the same as for the "Celestrak" data:
+
+```python
+>>> import spaceweather as sw
+>>> df_d = sw.gfz_daily()
+>>> df_d.loc["2000-01-01"].Apavg
+30.0
+>>> df_3h = sw.gfz_3h()
+>>> df_3h.loc["2000-01-01 01:30:00"]
+Ap    56.000
+Kp     5.333
+Name: 2000-01-01 01:30:00, dtype: float64
+
+```
+
+Currently, the data are not included in the package, downloads can be triggered
+by passing `update=True` to `sw.gfz_daily()` or by running `sw.update_gfz()`.
+The lower-level interface functions are called `read_gfz(<filename>)`
+for the ascii `.txt` files, and `read_gfz_wdc(<filename>)` for the WDC format.
+They can also be used directly for reading already downloaded data files
+outside of the package's data directory.
+
+```python
+>>> import spaceweather as sw
+>>> df_d = sw.read_gfz("./tests/Kp_ap_Ap_SN_F107_since_2024.txt")
+>>> df_d.loc["2024-01-01"].Apavg
+10.0
+
+```
+
 ### OMNI
 
 The [OMNI](https://omniweb.gsfc.nasa.gov/ow.html) 1-hour yearly data
