@@ -229,6 +229,18 @@ The data sources and file format are described at
 <http://celestrak.com/SpaceData/SpaceWx-format.php>
 (see [file_format.txt](file_format.txt) for a local copy of the format description).
 
+### GFZ
+
+The "GFZ" data are provided in [ascii](gfz_Kp_ap_Ap_SN_F107_format.txt)
+and [WDC](gfz_wdc_fmt.txt) format by the
+[GFZ German Research Centre for Geosciences](https://www.gfz-potsdam.de/en/)
+on their official [data webpage](https://kp.gfz-potsdam.de/en/data).
+The data have the doi: [10.5880/Kp.0001](https://doi.org/10.5880/Kp.0001),
+and they are provided under the "Creative Commons attribution license"
+[CC-by 4.0](https://creativecommons.org/licenses/by/4.0/)
+(local copy [COPYING.CCby4.0](COPYING.CCby4.0)).
+See also [COPYING.gfz](COPYING.gfz) for details.
+
 ### OMNI
 
 This package includes part of the hourly-resolved OMNI data,
