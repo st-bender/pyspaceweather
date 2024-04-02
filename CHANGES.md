@@ -13,6 +13,10 @@ v0.3.0 (unreleased)
 
 - Fixes downloading OMNI2 on Windows (https://github.com/st-bender/pyspaceweather/issues/2)
 
+### Changes
+
+- Updates space weather indices from celestrak (observed until 2024-04-01)
+
 
 v0.2.4 (2024-02-14)
 -------------------
