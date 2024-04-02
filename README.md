@@ -206,6 +206,7 @@ Basic class and method documentation is accessible via `pydoc`:
 ```sh
 $ pydoc spaceweather
 $ pydoc spaceweather.celestrak
+$ pydoc spaceweather.gfz
 $ pydoc spaceweather.omni
 ```
 
