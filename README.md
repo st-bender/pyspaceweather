@@ -12,7 +12,9 @@
 [![scrutinizer](https://scrutinizer-ci.com/g/st-bender/pyspaceweather/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/st-bender/pyspaceweather/?branch=master)
 
 This python module interfaces the space weather data available at
-<https://celestrak.com/SpaceData/> and <https://omniweb.gsfc.nasa.gov/ow.html>.
+<https://celestrak.com/SpaceData/>,
+<https://kp.gfz-potsdam.de/en/data>,
+and <https://omniweb.gsfc.nasa.gov/ow.html>.
 It includes the geomagnetic Ap and Kp indices, both the 3h values and
 the daily sum/averages.
 The data also include the solar f10.7 cm radio fluxes,
