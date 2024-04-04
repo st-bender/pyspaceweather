@@ -234,8 +234,12 @@ The data sources and file format are described at
 
 ### GFZ
 
-The "GFZ" data are provided in [ascii](gfz_Kp_ap_Ap_SN_F107_format.txt)
-and [WDC](gfz_wdc_fmt.txt) format by the
+The "GFZ" data are provided as tabulated ascii files
+([format description](https://kp.gfz-potsdam.de/app/format/Kp_ap_Ap_SN_F107_format.txt),
+[local copy](gfz_Kp_ap_Ap_SN_F107_format.txt))
+and in [WDC format](https://kp.gfz-potsdam.de/app/format/wdc_fmt.txt)
+([local copy](gfz_wdc_fmt.txt))
+by the
 [GFZ German Research Centre for Geosciences](https://www.gfz-potsdam.de/en/)
 on their official [data webpage](https://kp.gfz-potsdam.de/en/data).
 The data have the doi: [10.5880/Kp.0001](https://doi.org/10.5880/Kp.0001),
