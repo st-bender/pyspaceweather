@@ -157,12 +157,12 @@ def omnie_mask_missing(df):
 	Parameters
 	----------
 	df: pandas.DataFrame
-		The OMNI2 data set, e.g. from ``omnie_hourly()`` or ``read_omnie()``.
+		The OMNI2 data set, e.g. from :func:`omnie_hourly()` or :func:`read_omnie()`.
 
 	Returns
 	-------
 	df: pandas.DataFrame
-		The same dataframe with the missing values masked with numpy.nan.
+		The same dataframe with the missing values masked with ``numpy.nan``.
 
 	Note
 	----
