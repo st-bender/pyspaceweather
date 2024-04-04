@@ -164,8 +164,8 @@ def omnie_mask_missing(df):
 	df: pandas.DataFrame
 		The same dataframe with the missing values masked with ``numpy.nan``.
 
-	Note
-	----
+	Notes
+	-----
 	This function returns a copy of the dataframe, and all the integer columns
 	will be converted to float to support NaN.
 	"""

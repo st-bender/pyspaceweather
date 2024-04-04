@@ -70,6 +70,8 @@ texinfo_documents = [
      'Miscellaneous'),
 ]
 
+napoleon_use_admonition_for_notes = True
+
 html_theme = "sphinx_rtd_theme"
 
 # on_rtd is whether we are on readthedocs.org
