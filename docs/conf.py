@@ -99,7 +99,7 @@ html_context = dict(
     conf_py_path="/docs/",
 )
 html_extra_path = ["."]
-exclude_patterns = ["Makefile", "conf*"]
+exclude_patterns += ["Makefile", "conf*"]
 # Switch to old behavior with html4, for a good display of references,
 # as described in https://github.com/sphinx-doc/sphinx/issues/6705
 # html4_writer = True
