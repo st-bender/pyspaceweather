@@ -54,7 +54,7 @@ if __name__ == "__main__":
 		long_description_content_type="text/markdown",
 		url="https://github.com/st-bender/pyspaceweather",
 		author="Stefan Bender",
-		author_email="stefan.bender@ntnu.no",
+		author_email="sbender@iaa.es",
 		license="GPLv2",
 		classifiers=[
 			"Development Status :: 4 - Beta",
