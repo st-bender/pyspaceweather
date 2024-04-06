@@ -2,6 +2,7 @@
 from __future__ import unicode_literals
 
 from os import getenv
+from glob import glob
 
 from spaceweather import __version__
 
@@ -98,8 +99,7 @@ html_context = dict(
     github_version="master",
     conf_py_path="/docs/",
 )
-html_extra_path = ["."]
-exclude_patterns += ["Makefile", "conf*"]
+html_extra_path = glob("../COPYING*") + glob("../*.txt")
 # Switch to old behavior with html4, for a good display of references,
 # as described in https://github.com/sphinx-doc/sphinx/issues/6705
 # html4_writer = True
