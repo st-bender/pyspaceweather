@@ -59,6 +59,8 @@ jobs:
       - name: Test
         run: |
           py.test -v --doctest-glob='*.md' --cov src
+        env:
+          COVERAGE_CORE: sysmon
       - name: Convert coverage
         run: python -m coverage xml
       - name: Upload coverage report
