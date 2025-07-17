@@ -12,14 +12,13 @@ Celestrak space weather indices file parser for python [#]_.
 .. [#] https://celestrak.com/SpaceData/
 """
 import os
-from pkg_resources import resource_filename
 import logging
 from warnings import warn
 
 import numpy as np
 import pandas as pd
 
-from .core import _assert_file_exists, _dl_file
+from .core import _assert_file_exists, _dl_file, _resource_filepath
 
 __all__ = [
 	"sw_daily", "ap_kp_3h", "read_sw",
@@ -31,8 +30,8 @@ DL_URL_ALL = "https://celestrak.com/SpaceData/SW-All.txt"
 DL_URL_5Y = "https://celestrak.com/SpaceData/SW-Last5Years.txt"
 SW_FILE_ALL = os.path.basename(DL_URL_ALL)
 SW_FILE_5Y = os.path.basename(DL_URL_5Y)
-SW_PATH_ALL = resource_filename(__name__, os.path.join("data", SW_FILE_ALL))
-SW_PATH_5Y = resource_filename(__name__, os.path.join("data", SW_FILE_5Y))
+SW_PATH_ALL = _resource_filepath(SW_FILE_ALL)
+SW_PATH_5Y = _resource_filepath(SW_FILE_5Y)
 
 
 def get_file_age(swpath, relative=True):

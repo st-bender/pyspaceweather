@@ -13,7 +13,6 @@ Omni2 [#]_ space weather data interface for python.
 .. [#] https://omniweb.gsfc.nasa.gov/ow.html
 """
 import os
-from pkg_resources import resource_filename
 import logging
 from warnings import warn
 
@@ -22,7 +21,7 @@ from posixpath import join as urljoin
 import numpy as np
 import pandas as pd
 
-from .core import _assert_file_exists, _dl_file
+from .core import _assert_file_exists, _dl_file, _resource_filepath
 
 __all__ = [
 	"cache_omnie",
@@ -34,7 +33,7 @@ __all__ = [
 OMNI_URL_BASE = "https://spdf.gsfc.nasa.gov/pub/data/omni/low_res_omni/extended"
 OMNI_PREFIX, OMNI_EXT = "omni2", "dat"
 OMNI_SUBDIR = "omni_extended"
-LOCAL_PATH = resource_filename(__name__, os.path.join("data", OMNI_SUBDIR))
+LOCAL_PATH = _resource_filepath(OMNI_SUBDIR)
 
 _OMNI_MISSING = {
 	"year": None,

@@ -12,14 +12,13 @@ GFZ space weather indices ASCII file parser for python [#]_.
 .. [#] https://kp.gfz-potsdam.de/en/
 """
 import os
-from pkg_resources import resource_filename
 import logging
 from warnings import warn
 
 import numpy as np
 import pandas as pd
 
-from .core import _assert_file_exists, _dl_file
+from .core import _assert_file_exists, _dl_file, _resource_filepath
 
 __all__ = [
 	"gfz_daily", "gfz_3h", "read_gfz",
@@ -31,8 +30,8 @@ GFZ_URL_ALL = "https://kp.gfz-potsdam.de/app/files/Kp_ap_Ap_SN_F107_since_1932.t
 GFZ_URL_30D = "https://kp.gfz-potsdam.de/app/files/Kp_ap_Ap_SN_F107_nowcast.txt"
 GFZ_FILE_ALL = os.path.basename(GFZ_URL_ALL)
 GFZ_FILE_30D = os.path.basename(GFZ_URL_30D)
-GFZ_PATH_ALL = resource_filename(__name__, os.path.join("data", GFZ_FILE_ALL))
-GFZ_PATH_30D = resource_filename(__name__, os.path.join("data", GFZ_FILE_30D))
+GFZ_PATH_ALL = _resource_filepath(GFZ_FILE_ALL)
+GFZ_PATH_30D = _resource_filepath(GFZ_FILE_30D)
 
 
 def get_gfz_age(gfzpath, relative=True):

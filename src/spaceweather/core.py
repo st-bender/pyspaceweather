@@ -27,3 +27,16 @@ def _dl_file(swpath, url):
 		with open(swpath, 'wb') as fd:
 			for chunk in r.iter_content(chunk_size=1024):
 				fd.write(chunk)
+
+
+def _resource_filepath(file, subdir="data"):
+	try:
+		from contextlib import ExitStack
+		from importlib import resources
+		file_manager = ExitStack()
+		ref = resources.files(__package__) / subdir / file
+		filepath = file_manager.enter_context(resources.as_file(ref))
+	except (AttributeError, ImportError):
+		from pkg_resources import resource_filename
+		filepath = resource_filename(__package__, os.path.join(subdir, file))
+	return filepath
