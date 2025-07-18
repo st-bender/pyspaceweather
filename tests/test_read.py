@@ -11,6 +11,7 @@
 """Space weather index read tests
 """
 import os
+import shutil
 
 import numpy as np
 import pandas as pd
@@ -46,9 +47,15 @@ def _assert_age(p, age):
 	assert fage < pd.Timedelta(age)
 
 
-def test_update():
-	update_data(min_age="100d")
-	for (p, age) in zip([SW_PATH_ALL, SW_PATH_5Y], ["1460d", "100d"]):
+def test_update(tmpdir):
+	# test with temporary files
+	tmpdir = str(tmpdir)
+	tmp_all = os.path.join(tmpdir, "tmp_all.dat")
+	tmp_5y = os.path.join(tmpdir, "tmp_5y.dat")
+	shutil.copy(SW_PATH_ALL, tmp_all)
+	shutil.copy(SW_PATH_5Y, tmp_5y)
+	update_data(swpath_all=tmp_all, swpath_5y=tmp_5y, min_age="100d")
+	for (p, age) in zip([tmp_all, tmp_5y], ["1460d", "100d"]):
 		_assert_age(p, age)
 
 
