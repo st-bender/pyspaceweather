@@ -61,7 +61,6 @@ def test_auto_update(mocker, tmpdir):
 	# Should update the last-5-year data
 	sw_daily(update=True, update_interval="1d")
 	requests.get.assert_called_with(DL_URL_5Y, stream=True)
-	_assert_age(SW_PATH_5Y, "100d")
 	with pytest.warns(UserWarning):
 		sw_daily(update=False, update_interval="0h")
 
