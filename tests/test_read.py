@@ -47,6 +47,7 @@ def _assert_age(p, age):
 	assert fage < pd.Timedelta(age)
 
 
+@pytest.mark.online
 def test_update(tmpdir):
 	# test with temporary files
 	tmpdir = str(tmpdir)
