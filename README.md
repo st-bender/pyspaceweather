@@ -108,7 +108,7 @@ they can be updated by passing `update=True` to both functions, or by calling
 ```python
 >>> import spaceweather as sw
 >>> df_d = sw.sw_daily()
->>> df_d.loc["2000-01-01"].Apavg
+>>> print(df_d.loc["2000-01-01"].Apavg)
 30.0
 >>> df_3h = sw.ap_kp_3h()
 >>> df_3h.loc["2000-01-01 01:30:00"]
@@ -141,7 +141,7 @@ The interface is mostly the same as for the "Celestrak" data:
 ```python
 >>> import spaceweather as sw
 >>> df_d = sw.gfz_daily()
->>> df_d.loc["2000-01-01"].Apavg
+>>> print(df_d.loc["2000-01-01"].Apavg)
 30.0
 >>> df_3h = sw.gfz_3h()
 >>> df_3h.loc["2000-01-01 01:30:00"]
@@ -161,7 +161,7 @@ outside of the package's data directory.
 ```python
 >>> import spaceweather as sw
 >>> df_d = sw.read_gfz("./tests/Kp_ap_Ap_SN_F107_since_2024.txt")
->>> df_d.loc["2024-01-01"].Apavg
+>>> print(df_d.loc["2024-01-01"].Apavg)
 10.0
 
 ```
