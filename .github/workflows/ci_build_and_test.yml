@@ -62,7 +62,7 @@ jobs:
         env:
           COVERAGE_CORE: sysmon
       - name: Online Test
-        if: matrix.python-version == "3.12"
+        if: matrix.python-version == '3.12'
         run: |
           py.test -v --run-online --doctest-glob='*.md' --cov src
         env:
