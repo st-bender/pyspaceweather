@@ -309,7 +309,13 @@ def _doc_param(**sub):
 
 
 @_doc_param(params=_GFZ_COMMON_PARAMS)
-def gfz_daily(gfzpath_all=GFZ_PATH_ALL, gfzpath_30d=GFZ_PATH_30D, update=False, update_interval="10days"):
+def gfz_daily(
+	gfzpath_all=GFZ_PATH_ALL,
+	gfzpath_30d=GFZ_PATH_30D,
+	update=False,
+	update_interval="10days",
+	read_func=read_gfz,
+):
 	"""Combined daily Ap, Kp, and f10.7 index values
 
 	Combines the "historic" and last-30-day data into one dataframe.
@@ -349,8 +355,8 @@ def gfz_daily(gfzpath_all=GFZ_PATH_ALL, gfzpath_30d=GFZ_PATH_30D, update=False, 
 				)
 			)
 
-	df_all = read_gfz(gfzpath_all)
-	df_30d = read_gfz(gfzpath_30d)
+	df_all = read_func(gfzpath_all)
+	df_30d = read_func(gfzpath_30d)
 	return pd.concat([df_all, df_30d[df_all.index[-1]:].iloc[1:]])
 
 
