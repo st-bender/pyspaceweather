@@ -351,7 +351,7 @@ def gfz_daily(gfzpath_all=GFZ_PATH_ALL, gfzpath_30d=GFZ_PATH_30D, update=False, 
 
 	df_all = read_gfz(gfzpath_all)
 	df_30d = read_gfz(gfzpath_30d)
-	return pd.concat([df_all[:df_30d.index[0]], df_30d[1:]])
+	return pd.concat([df_all, df_30d[df_all.index[-1]:].iloc[1:]])
 
 
 @_doc_param(params=_GFZ_COMMON_PARAMS)
