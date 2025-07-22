@@ -418,12 +418,18 @@ update_interval: str, optional, default "30days"
 	By default, no automatic re-download is initiated, set `update` to true.
 	The online data is updated every 3 hours, thus setting this value to
 	a shorter time is not needed and not recommended.
-parse_func: callable, optional, default `read_gfz`
-	The file parsing function to parse the files passed via `gfzpath_all`
-	and `gfzpath_all`. The default is `read_gfz()` to parse the GFZ ASCII
-	files into a daily `pandas.DataFrame`. Use for example `read_gfz_wdc()`
-	to parse the GFZ files in WDC format.
+gfz_format: str, optional, default `None`
+	The file format to parse the files passed via `gfzpath_all` and `gfzpath_all`.
+	Use `None`, "default", "gfz", or "standard" for the "standard" GFZ ASCII files.
+	Use "wdc" to parse files in WDC format into a full-length `pandas.DataFrame`.
 """
+
+_PARSERS = {
+	"default": (read_gfz, update_gfz),
+	"gfz": (read_gfz, update_gfz),
+	"standard": (read_gfz, update_gfz),
+	"wdc": (read_gfz_wdc, update_gfz),
+}
 
 
 def _doc_param(**sub):
@@ -439,7 +445,7 @@ def gfz_daily(
 	gfzpath_30d=GFZ_PATH_30D,
 	update=False,
 	update_interval="10days",
-	parse_func=read_gfz,
+	gfz_format=None,
 ):
 	"""Combined daily Ap, Kp, and f10.7 index values
 
@@ -458,20 +464,22 @@ def gfz_daily(
 	--------
 	gfz_3h, read_gfz
 	"""
+	gfz_format = gfz_format or "gfz"
+	parse_func, update_func = _PARSERS[gfz_format.lower()]
 	# ensure that the file exists and is up to date
 	if (
 		not os.path.exists(gfzpath_all)
 		or not os.path.exists(gfzpath_30d)
 	):
 		warn("Could not find space weather data, trying to download.")
-		update_gfz(gfzpath_all=gfzpath_all, gfzpath_30d=gfzpath_30d)
+		update_func(gfzpath_all=gfzpath_all, gfzpath_30d=gfzpath_30d)
 
 	if (
 		get_gfz_age(gfzpath_all) > pd.Timedelta("30days")
 		or get_gfz_age(gfzpath_30d) > pd.Timedelta(update_interval)
 	):
 		if update:
-			update_gfz(gfzpath_all=gfzpath_all, gfzpath_30d=gfzpath_30d)
+			update_func(gfzpath_all=gfzpath_all, gfzpath_30d=gfzpath_30d)
 		else:
 			warn(
 				"Local data files are older than {0}, pass `update=True` or "
