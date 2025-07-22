@@ -28,6 +28,12 @@ from spaceweather.gfz import GFZ_URL_30D
 GFZ_PATH_ALL = os.path.join("tests", "Kp_ap_Ap_SN_F107_since_2024.txt")
 GFZ_PATH_30D = os.path.join("tests", "Kp_ap_Ap_SN_F107_nowcast.txt")
 
+HP30_PATH_ALL = os.path.join("tests", "Hp30_ap30_complete_series.txt")
+HP30_PATH_30D = os.path.join("tests", "Hp30_ap30_nowcast.txt")
+
+HP60_PATH_ALL = os.path.join("tests", "Hp60_ap60_complete_series.txt")
+HP60_PATH_30D = os.path.join("tests", "Hp60_ap60_nowcast.txt")
+
 
 @pytest.fixture(scope="module")
 def df_3h():
@@ -117,5 +123,33 @@ def test_3hourly_index(name, result, df_3h):
 			)
 		][name].values,
 		np.array(result, dtype=np.float64),
+		rtol=1e-6,
+	)
+
+
+@pytest.mark.parametrize(
+	"fpall, fp30d, index, expected",
+	[
+		(
+			HP30_PATH_ALL, HP30_PATH_30D, "2025-07-01 00:15",
+			[2025, 7, 1, 0, 0.25, 34150.0, 34150.01042, 3.000, 15, 0],
+		),
+		(
+			HP60_PATH_ALL, HP60_PATH_30D, "2025-07-01 00:30",
+			[2025, 7, 1, 0, 0.50, 34150.0, 34150.02083, 3.333, 18, 0],
+		),
+	],
+	ids=["Hp30", "Hp60"],
+)
+def test_daily_hp(fpall, fp30d, index, expected, request):
+	_gfz_fmt = request.node.callspec.id.lower()
+	df = gfz_daily(
+		gfzpath_all=fpall,
+		gfzpath_30d=fp30d,
+		gfz_format=_gfz_fmt,
+	)
+	np.testing.assert_allclose(
+		df.loc[index].values,
+		np.array(expected, dtype=np.float64),
 		rtol=1e-6,
 	)
