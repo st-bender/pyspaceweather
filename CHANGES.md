@@ -1,6 +1,30 @@
 Changelog
 =========
 
+v0.4.0 (unreleased)
+-------------------
+
+### New
+
+- Supports space weather Hp30 and Hp60 index data from GFZ Potsdam
+  https://kp.gfz-potsdam.de/en/hp30-hp60, https://doi.org/10.5880/HPO.0003
+
+### Fixes
+
+- Compatibility with newer `setuptools` versions that will remove support
+  for `pkg_resources`
+- Avoids inadvertently updating the local data files when running the test
+  suite locally
+- Formatting fixes for the documentation
+
+### Changes
+
+- Updates space weather indices from celestrak (observed until 2025-07-16),
+  differences throughout the whole period, ISN and F10.7 data changed.
+- Reduces server access when testing data updating
+- CI updates
+
+
 v0.3.0 (2024-04-04)
 -------------------
 
