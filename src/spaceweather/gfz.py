@@ -24,6 +24,7 @@ __all__ = [
 	"gfz_daily", "gfz_3h", "read_gfz",
 	"read_gfz_hp",
 	"get_gfz_age", "update_gfz",
+	"update_gfz_hp30", "update_gfz_hp60",
 	"GFZ_PATH_ALL", "GFZ_PATH_30D",
 	"HP30_PATH_ALL", "HP30_PATH_30D",
 	"HP60_PATH_ALL", "HP60_PATH_30D",
@@ -134,6 +135,42 @@ def update_gfz(
 	_update_file(gfzpath_all, url_all, "30days")
 	# Don't re-download before `min_age` has passed (1d)
 	_update_file(gfzpath_30d, url_30d, min_age)
+
+
+def update_gfz_hp30(
+	min_age="1d",
+	gfzpath_all=HP30_PATH_ALL, gfzpath_30d=HP30_PATH_30D,
+	url_all=HP30_URL_ALL, url_30d=HP30_URL_30D,
+):
+	"""Updates the local Hp30 index data
+
+	See Also
+	--------
+	update_gfz
+	"""
+	return update_gfz(
+		min_age=min_age,
+		gfzpath_all=gfzpath_all, gfzpath_30d=gfzpath_30d,
+		url_all=url_all, url_30d=url_30d,
+	)
+
+
+def update_gfz_hp60(
+	min_age="1d",
+	gfzpath_all=HP60_PATH_ALL, gfzpath_30d=HP60_PATH_30D,
+	url_all=HP60_URL_ALL, url_30d=HP60_URL_30D,
+):
+	"""Updates the local Hp60 index data
+
+	See Also
+	--------
+	update_gfz
+	"""
+	return update_gfz(
+		min_age=min_age,
+		gfzpath_all=gfzpath_all, gfzpath_30d=gfzpath_30d,
+		url_all=url_all, url_30d=url_30d,
+	)
 
 
 def read_gfz(gfzpath):
