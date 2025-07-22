@@ -166,6 +166,69 @@ outside of the package's data directory.
 
 ```
 
+The data format for the GFZ [Hpo indices](https://kp.gfz-potsdam.de/en/hp30-hp60)
+Hp30 and Hp60 is also supported.
+For downloading and updating the local Hp30 and Hp60 data files,
+use `sw.update_gfz_hp30()` and `sw.update_gfz_hp60()`.
+For reading individual files, use `read_gfz_hp(<filename>)`.
+
+```python
+>>> import spaceweather as sw
+>>> df_hp30 = sw.read_gfz_hp("./tests/Hp30_ap30_nowcast.txt")
+>>> df_hp30.loc["2025-07-01 00:15:00"]
+year       2025.000000
+month         7.000000
+day           1.000000
+hh_h          0.000000
+hh_m          0.250000
+days      34150.000000
+days_m    34150.011719
+Hp            3.000000
+ap           15.000000
+D             0.000000
+Name: 2025-07-01 00:15:00, dtype: float64
+
+>>> df_hp60 = sw.read_gfz_hp("./tests/Hp60_ap60_nowcast.txt")
+>>> df_hp60.loc["2025-07-01 00:30:00"]
+year       2025.000000
+month         7.000000
+day           1.000000
+hh_h          0.000000
+hh_m          0.500000
+days      34150.000000
+days_m    34150.019531
+Hp            3.333000
+ap           18.000000
+D             0.000000
+Name: 2025-07-01 00:30:00, dtype: float64
+
+```
+
+To get a complete combined historic and nowcast dataset, use `sw.gfz_daily()`
+by passing the Hp30 or Hp60 file locations and setting `gfz_format` to "hp30" or "hp60".
+
+```python
+>>> import spaceweather as sw
+>>> df_d = sw.gfz_daily(
+... 	gfzpath_all=sw.HP30_PATH_ALL,
+... 	gfzpath_30d=sw.HP30_PATH_30D,
+... 	gfz_format="hp30",
+... )
+>>> df_d.loc["2025-07-01 00:15:00"]
+year       2025.000000
+month         7.000000
+day           1.000000
+hh_h          0.000000
+hh_m          0.250000
+days      34150.000000
+days_m    34150.011719
+Hp            3.000000
+ap           15.000000
+D             0.000000
+Name: 2025-07-01 00:15:00, dtype: float64
+
+```
+
 ### OMNI
 
 The [OMNI](https://omniweb.gsfc.nasa.gov/ow.html) 1-hour yearly data
