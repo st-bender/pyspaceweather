@@ -298,7 +298,7 @@ update_interval: str, optional, default "30days"
 	By default, no automatic re-download is initiated, set `update` to true.
 	The online data is updated every 3 hours, thus setting this value to
 	a shorter time is not needed and not recommended.
-read_func: callable, optional, default `read_gfz`
+parse_func: callable, optional, default `read_gfz`
 	The file parsing function to parse the files passed via `gfzpath_all`
 	and `gfzpath_all`. The default is `read_gfz()` to parse the GFZ ASCII
 	files into a daily `pandas.DataFrame`. Use for example `read_gfz_wdc()`
@@ -319,7 +319,7 @@ def gfz_daily(
 	gfzpath_30d=GFZ_PATH_30D,
 	update=False,
 	update_interval="10days",
-	read_func=read_gfz,
+	parse_func=read_gfz,
 ):
 	"""Combined daily Ap, Kp, and f10.7 index values
 
@@ -360,8 +360,8 @@ def gfz_daily(
 				)
 			)
 
-	df_all = read_func(gfzpath_all)
-	df_30d = read_func(gfzpath_30d)
+	df_all = parse_func(gfzpath_all)
+	df_30d = parse_func(gfzpath_30d)
 	return pd.concat([df_all, df_30d[df_all.index[-1]:].iloc[1:]])
 
 
