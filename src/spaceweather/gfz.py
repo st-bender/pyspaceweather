@@ -283,26 +283,26 @@ def read_gfz_wdc(gfzpath):
 
 # Common arguments for the public daily and 3h interfaces
 _GFZ_COMMON_PARAMS = """
-	Parameters
-	----------
-	gfzpath_all: str, optional, default depending on package install location
-		Filename for the large combined index file including the
-		historic data, absolute path or relative to the current dir.
-	gfzpath_30d: str, optional, default depending on package install location
-		Filename for the 30-day (nowcast) index file,
-		absolute path or relative to the current dir.
-	update: bool, optional, default False
-		Attempt to update the local data if it is older than `update_interval`.
-	update_interval: str, optional, default "30days"
-		The time after which the data are considered "old".
-		By default, no automatic re-download is initiated, set `update` to true.
-		The online data is updated every 3 hours, thus setting this value to
-		a shorter time is not needed and not recommended.
-	read_func: callable, optional, default `read_gfz`
-		The file parsing function to parse the files passed via `gfzpath_all`
-		and `gfzpath_all`. The default is `read_gfz()` to parse the GFZ ASCII
-		files into a daily `pandas.DataFrame`. Use for example `read_gfz_wdc()`
-		to parse the GFZ files in WDC format.
+Parameters
+----------
+gfzpath_all: str, optional, default depending on package install location
+	Filename for the large combined index file including the
+	historic data, absolute path or relative to the current dir.
+gfzpath_30d: str, optional, default depending on package install location
+	Filename for the 30-day (nowcast) index file,
+	absolute path or relative to the current dir.
+update: bool, optional, default False
+	Attempt to update the local data if it is older than `update_interval`.
+update_interval: str, optional, default "30days"
+	The time after which the data are considered "old".
+	By default, no automatic re-download is initiated, set `update` to true.
+	The online data is updated every 3 hours, thus setting this value to
+	a shorter time is not needed and not recommended.
+read_func: callable, optional, default `read_gfz`
+	The file parsing function to parse the files passed via `gfzpath_all`
+	and `gfzpath_all`. The default is `read_gfz()` to parse the GFZ ASCII
+	files into a daily `pandas.DataFrame`. Use for example `read_gfz_wdc()`
+	to parse the GFZ files in WDC format.
 """
 
 

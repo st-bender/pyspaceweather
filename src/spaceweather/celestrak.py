@@ -226,20 +226,20 @@ def read_sw(swpath):
 
 # Common arguments for the public daily and 3h interfaces
 _SW_COMMON_PARAMS = """
-	Parameters
-	----------
-	swpath_all: str, optional, default depending on package install location
-		Filename for the large combined index file including the
-		historic data, absolute path or relative to the current dir.
-	swpath_5y: str, optional, default depending on package install location
-		Filename for the 5-year index file, absolute path or relative to the current dir.
-	update: bool, optional, default False
-		Attempt to update the local data if it is older than `update_interval`.
-	update_interval: str, optional, default "30days"
-		The time after which the data are considered "old".
-		By default, no automatic re-download is initiated, set `update` to true.
-		The online data is updated every 3 hours, thus setting this value to
-		a shorter time is not needed and not recommended.
+Parameters
+----------
+swpath_all: str, optional, default depending on package install location
+	Filename for the large combined index file including the
+	historic data, absolute path or relative to the current dir.
+swpath_5y: str, optional, default depending on package install location
+	Filename for the 5-year index file, absolute path or relative to the current dir.
+update: bool, optional, default False
+	Attempt to update the local data if it is older than `update_interval`.
+update_interval: str, optional, default "30days"
+	The time after which the data are considered "old".
+	By default, no automatic re-download is initiated, set `update` to true.
+	The online data is updated every 3 hours, thus setting this value to
+	a shorter time is not needed and not recommended.
 """
 
 
