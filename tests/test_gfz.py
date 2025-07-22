@@ -23,7 +23,7 @@ import pytest
 from spaceweather import (
 	gfz_3h, gfz_daily, get_gfz_age, update_gfz,
 )
-from spaceweather.gfz import GFZ_URL_30D
+from spaceweather.gfz import GFZ_URL_30D, HP30_URL_30D, HP60_URL_30D
 
 GFZ_PATH_ALL = os.path.join("tests", "Kp_ap_Ap_SN_F107_since_2024.txt")
 GFZ_PATH_30D = os.path.join("tests", "Kp_ap_Ap_SN_F107_nowcast.txt")
@@ -125,6 +125,26 @@ def test_3hourly_index(name, result, df_3h):
 		np.array(result, dtype=np.float64),
 		rtol=1e-6,
 	)
+
+
+@pytest.mark.parametrize(
+	"fpall, fp30d, url",
+	[
+		(HP30_PATH_ALL, HP30_PATH_30D, HP30_URL_30D),
+		(HP60_PATH_ALL, HP60_PATH_30D, HP60_URL_30D),
+	],
+	ids=["Hp30", "Hp60"],
+)
+def test_auto_update_hp(fpall, fp30d, url, mocker, request):
+	mocker.patch("requests.get")
+	_gfz_fmt = request.node.callspec.id.lower()
+	# Should update the last-5-year data
+	gfz_daily(
+		gfzpath_all=fpall, gfzpath_30d=fp30d,
+		update=True, update_interval="1d",
+		gfz_format=_gfz_fmt,
+	)
+	requests.get.assert_called_with(url, stream=True)
 
 
 @pytest.mark.parametrize(
