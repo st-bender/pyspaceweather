@@ -422,6 +422,7 @@ gfz_format: str, optional, default `None`
 	The file format to parse the files passed via `gfzpath_all` and `gfzpath_all`.
 	Use `None`, "default", "gfz", or "standard" for the "standard" GFZ ASCII files.
 	Use "wdc" to parse files in WDC format into a full-length `pandas.DataFrame`.
+	Use "hp30" or "hp60" to read the Hp30 and Hp60 data files.
 """
 
 _PARSERS = {
@@ -429,6 +430,8 @@ _PARSERS = {
 	"gfz": (read_gfz, update_gfz),
 	"standard": (read_gfz, update_gfz),
 	"wdc": (read_gfz_wdc, update_gfz),
+	"hp30": (read_gfz_hp, update_gfz_hp30),
+	"hp60": (read_gfz_hp, update_gfz_hp60),
 }
 
 
