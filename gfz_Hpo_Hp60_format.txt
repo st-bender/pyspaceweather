@@ -1,0 +1,30 @@
+# PURPOSE: This file distributes the Hp60 index and ap60 index of the geomagnetic Hpo index family
+# LICENSE: CC BY 4.0
+# SOURCE: Geomagnetic Observatory Niemegk, GFZ German Research Centre for Geosciences, please cite:
+# Yamazaki, Y., Matzka, J., da Silva, M.V., Kervalishvili, G., Korte, M., Rauberg, J., 2024. Assessment of geomagnetic activity for the 
+# Kp=9 "Gannon Storm" in May 2024 based on version 3.0 Hpo Indices. ESS Open Archive, https://doi.org/10.22541/essoar.171838396.68563140/v1
+#
+# Hp60 and ap60
+# Hp60 and ap60 are produced by Geomagnetic Observatory Niemegk, GFZ German Research Centre for Geosciences. Both indices are unitless.
+# Described in: Yamazaki et al. (2024), see reference above.
+# Data publication: Matzka, J., Bronkalla, O., da Silva, M.V., Kervalishvili, G., Rauberg, J., Korte., M. and Yamazaki, Y., 2024. Geomagnetic
+# Hpo index. V. 3.0. GFZ Data Services, https://doi.org/10.5880/Hpo.0003
+# 
+# Short file description (for a detailed file description, see Hpo_format.txt):
+# 30 header lines, all starting with #
+# ASCII, blank separated and fixed length, missing data indicated by -1.000 for Hp60 and -1 for ap60
+# YYYY MM DD is date of UT day, hh.h is starting time in hours of interval for which Hp60 and ap60 are given
+# hh._m is mid time in hours of interval for which Hp60 and ap60 are given
+# days is days since 1932-01-01 00:00 UT to start of interval, days_m is days since 1932-01-01 00:00 UT to mid of interval
+# Hp60, ap60
+# Currently always D = 0, reserved for future use.
+#
+#
+#
+#
+#
+# The format for each line is (i stands for integer, f for float):
+#iii ii ii ff.f ff.ff fffff.fffff fffff.fffff ff.fff iiii i
+#
+# The parameters in each line are:
+#YYY MM DD hh.h hh._m        days      days_m   Hp60 ap60 D
