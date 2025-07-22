@@ -22,8 +22,11 @@ from .core import _assert_file_exists, _dl_file, _resource_filepath
 
 __all__ = [
 	"gfz_daily", "gfz_3h", "read_gfz",
+	"read_gfz_hp",
 	"get_gfz_age", "update_gfz",
 	"GFZ_PATH_ALL", "GFZ_PATH_30D",
+	"HP30_PATH_ALL", "HP30_PATH_30D",
+	"HP60_PATH_ALL", "HP60_PATH_30D",
 ]
 
 GFZ_URL_ALL = "https://kp.gfz-potsdam.de/app/files/Kp_ap_Ap_SN_F107_since_1932.txt"
@@ -32,6 +35,20 @@ GFZ_FILE_ALL = os.path.basename(GFZ_URL_ALL)
 GFZ_FILE_30D = os.path.basename(GFZ_URL_30D)
 GFZ_PATH_ALL = _resource_filepath(GFZ_FILE_ALL)
 GFZ_PATH_30D = _resource_filepath(GFZ_FILE_30D)
+
+HP30_URL_ALL = "https://kp.gfz.de/app/files/Hp30_ap30_complete_series.txt"
+HP30_URL_30D = "https://kp.gfz.de/app/files/Hp30_ap30_nowcast.txt"
+HP30_FILE_ALL = os.path.basename(HP30_URL_ALL)
+HP30_FILE_30D = os.path.basename(HP30_URL_30D)
+HP30_PATH_ALL = _resource_filepath(HP30_FILE_ALL)
+HP30_PATH_30D = _resource_filepath(HP30_FILE_30D)
+
+HP60_URL_ALL = "https://kp.gfz.de/app/files/Hp60_ap60_complete_series.txt"
+HP60_URL_30D = "https://kp.gfz.de/app/files/Hp60_ap60_nowcast.txt"
+HP60_FILE_ALL = os.path.basename(HP60_URL_ALL)
+HP60_FILE_30D = os.path.basename(HP60_URL_30D)
+HP60_PATH_ALL = _resource_filepath(HP60_FILE_ALL)
+HP60_PATH_30D = _resource_filepath(HP60_FILE_30D)
 
 
 def get_gfz_age(gfzpath, relative=True):
@@ -202,6 +219,72 @@ def read_gfz(gfzpath):
 	kpns = list(map("Kp{0}".format, range(0, 23, 3)))
 	gfz_df.insert(15, "Kpsum", gfz_df[kpns].sum(axis=1))
 	return gfz_df
+
+
+def read_gfz_hp(gfzhppath):
+	"""Read and parse GFZ Hp30 and Hp60 index data file
+
+	Reads the given file and parses it according to the Hp30 and Hp60 file format.
+	File format descriptions in [#]_ and [#]_
+
+	.. [#] https://kp.gfz-potsdam.de/app/format/Hpo_Hp30.txt
+	.. [#] https://kp.gfz-potsdam.de/app/format/Hpo_Hp60.txt
+
+	Parameters
+	----------
+	gfzhppath: str
+		File to parse, absolute path or relative to the current dir.
+
+	Returns
+	-------
+	hp_df: pandas.DataFrame
+		The parsed space weather data (daily values).
+		Raises an ``IOError`` if the file is not found.
+
+		The dataframe contains the following columns:
+
+		"index":
+			padas.DateTimeIndex of the middle times of the intervals.
+		"year", "month", "day":
+			The observation date.
+		"hh_h":
+			Starting time in hours of interval.
+		"hh_m":
+			Middle time in hours of interval.
+		"days":
+			Days since 1932-01-01 00:00 UT to start of interval.
+		"days_m":
+			Days since 1932-01-01 00:00 UT to middle of interval.
+		"Hp":
+			Hp index during to the interval (30 min or 60 min).
+		"ap":
+			ap index during to the interval (30 min or 60 min).
+		"D":
+			Reserved for future use, D = 0 for now.
+	"""
+	_assert_file_exists(gfzhppath)
+	hp = np.genfromtxt(
+		gfzhppath,
+		delimiter=[
+		#  yy mm dd hh hm ddd ddm hp ap  D
+			4, 3, 3, 5, 6, 12, 12, 7, 5, 2,
+		],
+		dtype=(
+			"i4,i4,i4,f4,f4,f4,f4,f4,i4,i4"
+		),
+		names=[
+			"year", "month", "day", "hh_h", "hh_m", "days", "days_m", "Hp", "ap", "D",
+		]
+	)
+	hp = hp[hp["year"] != -1]
+	ts = pd.to_datetime([
+		"{0:04d}-{1:02d}-{2:02d} {3:02d}:{4:02d}".format(
+			yy, mm, dd, int(np.floor(hh_m)), int(60 * (hh_m - np.floor(hh_m)))
+		)
+		for yy, mm, dd, hh_m in hp[["year", "month", "day", "hh_m"]]
+	])
+	hp_df = pd.DataFrame(hp, index=ts)
+	return hp_df
 
 
 def read_gfz_wdc(gfzpath):
