@@ -8,8 +8,12 @@
 """Python interface for space weather indices from GFZ Potsdam
 
 GFZ space weather indices ASCII file parser for python [#]_.
+Includes parser for the GFZ ASCII files, files in WDC format,
+and for the Hpo 30 and 60 minute ASCII files [#]_.
+For the file formats, see the `gfz_xxx_format.txt` files.
 
 .. [#] https://kp.gfz-potsdam.de/en/
+.. [#] https://kp.gfz-potsdam.de/en/hp30-hp60
 """
 import os
 import logging
