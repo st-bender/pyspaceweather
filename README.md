@@ -309,7 +309,26 @@ The data have the doi: [10.5880/Kp.0001](https://doi.org/10.5880/Kp.0001),
 and they are provided under the "Creative Commons attribution license"
 [CC-by 4.0](https://creativecommons.org/licenses/by/4.0/)
 (local copy [COPYING.CCby4.0](COPYING.CCby4.0)).
-See also [COPYING.gfz](COPYING.gfz) for details.
+
+The "GFZ" Hp30 and Hp60 data are provided as tabulated ascii files
+([Hp30 format](https://kp.gfz-potsdam.de/app/format/Hpo_Hp30_format.txt),
+[local copy](gfz_Hpo_Hp30_format.txt);
+[Hp60 format](https://kp.gfz-potsdam.de/app/format/Hpo_Hp60_format.txt),
+[local copy](gfz_Hpo_Hp60_format.txt)).
+The Hpo data are available from
+<https://kp.gfz-potsdam.de/en/hp30-hp60> and via the
+doi: [10.5880/Hpo.0003](https://doi.org/10.5880/Hpo.0003).
+
+When using data from the GFZ Potsdam, consider to cite the following publications,
+see also [COPYING.gfz](COPYING.gfz) for details:
+
+Matzka, J., Stolle, C., Yamazaki, Y., Bronkalla, O., & Morschhauser, A. (2021),
+The geomagnetic Kp index and derived indices of geomagnetic activity,
+Space Weather, volume 19, issue 5, e2020SW002641. <https://doi.org/10.1029/2020SW002641>
+
+Yamazaki, Y., Matzka, J., da Silva, M.V., Kervalishvili, G., Korte, M., Rauberg, J., (2024),
+Assessment of geomagnetic activity for the Kp=9 "Gannon Storm" in May 2024 based on version 3.0 Hpo Indices.
+ESS Open Archive, <https://doi.org/10.22541/essoar.171838396.68563140/v1>
 
 ### OMNI
 
