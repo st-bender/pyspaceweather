@@ -8,6 +8,7 @@ v0.4.0 (unreleased)
 
 - Supports space weather Hp30 and Hp60 index data from GFZ Potsdam
   https://kp.gfz-potsdam.de/en/hp30-hp60, https://doi.org/10.5880/HPO.0003
+- Raises a `UserWarning` when downloading the data fails
 
 ### Fixes
 
