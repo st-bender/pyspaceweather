@@ -200,6 +200,9 @@ def read_omnie(omnie_file):
 		https://spdf.gsfc.nasa.gov/pub/data/omni/low_res_omni/extended/aareadme_extended
 
 		Raises an ``IOError`` if the file is not found.
+		The index is returned timezone-naive but contains UTC timestamps.
+		To convert to a timezone-aware index, use
+		:meth:`pandas.DataFrame.tz_localize()`: ``sw_df.tz_localize("utc")``.
 
 		The dataframe contains the following columns:
 
@@ -399,6 +402,9 @@ def omnie_hourly(
 		The parsed space weather data (hourly values).
 
 		Raises an ``IOError`` if the file is not available.
+		The index is returned timezone-naive but contains UTC timestamps.
+		To convert to a timezone-aware index, use
+		:meth:`pandas.DataFrame.tz_localize()`: ``sw_df.tz_localize("utc")``.
 
 	See Also
 	--------

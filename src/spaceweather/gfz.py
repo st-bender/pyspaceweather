@@ -279,7 +279,10 @@ def read_gfz_hp(gfzhppath):
 	Returns
 	-------
 	hp_df: pandas.DataFrame
-		The parsed space weather data (daily values).
+		The parsed space weather data with the 30 min or 60 min index.
+		The index is returned timezone-naive but contains UTC timestamps.
+		To convert to a timezone-aware index, use
+		:meth:`pandas.DataFrame.tz_localize()`: ``hp_df.tz_localize("utc")``.
 		Raises an ``IOError`` if the file is not found.
 
 		The dataframe contains the following columns:
@@ -343,6 +346,9 @@ def read_gfz_wdc(gfzpath):
 	gfz_df: pandas.DataFrame
 		The parsed space weather data (daily values).
 		Raises an ``IOError`` if the file is not found.
+		The index is returned timezone-naive but contains UTC timestamps.
+		To convert to a timezone-aware index, use
+		:meth:`pandas.DataFrame.tz_localize()`: ``gfz_df.tz_localize("utc")``.
 
 		The dataframe contains the following columns:
 
@@ -466,6 +472,9 @@ def gfz_daily(
 	gfz_df: pandas.DataFrame
 		The combined parsed space weather data (daily values).
 		Raises ``IOError`` if the data files cannot be found.
+		The index is returned timezone-naive but contains UTC timestamps.
+		To convert to a timezone-aware index, use
+		:meth:`pandas.DataFrame.tz_localize()`: ``gfz_df.tz_localize("utc")``.
 
 	See Also
 	--------
@@ -517,6 +526,9 @@ def gfz_3h(*args, **kwargs):
 		The index values are centred at the 3h interval, i.e. at 01:30:00,
 		04:30:00, 07:30:00, ... and so on.
 		Raises ``IOError`` if the data files cannot be found.
+		The index is returned timezone-naive but contains UTC timestamps.
+		To convert to a timezone-aware index, use
+		:meth:`pandas.DataFrame.tz_localize()`: ``gfz_df.tz_localize("utc")``.
 
 	See Also
 	--------

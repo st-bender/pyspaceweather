@@ -136,6 +136,9 @@ def read_sw(swpath):
 	sw_df: pandas.DataFrame
 		The parsed space weather data (daily values).
 		Raises an ``IOError`` if the file is not found.
+		The index is returned timezone-naive but contains UTC timestamps.
+		To convert to a timezone-aware index, use
+		:meth:`pandas.DataFrame.tz_localize()`: ``sw_df.tz_localize("utc")``.
 
 		The dataframe contains the following columns:
 
@@ -264,6 +267,9 @@ def sw_daily(swpath_all=SW_PATH_ALL, swpath_5y=SW_PATH_5Y, update=False, update_
 	sw_df: pandas.DataFrame
 		The combined parsed space weather data (daily values).
 		Raises ``IOError`` if the data files cannot be found.
+		The index is returned timezone-naive but contains UTC timestamps.
+		To convert to a timezone-aware index, use
+		:meth:`pandas.DataFrame.tz_localize()`: ``sw_df.tz_localize("utc")``.
 
 	See Also
 	--------
@@ -314,6 +320,9 @@ def ap_kp_3h(*args, **kwargs):
 		The index values are centred at the 3h interval, i.e. at 01:30:00,
 		04:30:00, 07:30:00, ... and so on.
 		Raises ``IOError`` if the data files cannot be found.
+		The index is returned timezone-naive but contains UTC timestamps.
+		To convert to a timezone-aware index, use
+		:meth:`pandas.DataFrame.tz_localize()`: ``sw_df.tz_localize("utc")``.
 
 	See Also
 	--------
