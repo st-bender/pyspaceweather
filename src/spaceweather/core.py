@@ -11,6 +11,7 @@ General file handling functions for space weather data
 """
 import errno
 import os
+import warnings
 
 import requests
 
@@ -23,6 +24,12 @@ def _assert_file_exists(f):
 def _dl_file(swpath, url):
 	with requests.get(url, stream=True) as r:
 		if r.status_code != requests.codes.ok:
+			if isinstance(r.status_code, int):
+				warnings.warn(
+					"Failed to download from {0}, status code: {1}".format(
+						url, r.status_code,
+					),
+				)
 			return
 		with open(swpath, 'wb') as fd:
 			for chunk in r.iter_content(chunk_size=1024):
