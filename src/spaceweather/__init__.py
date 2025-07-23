@@ -8,7 +8,7 @@
 """Python interface for space weather indices
 
 """
-__version__ = "0.4.0.dev1"
+__version__ = "0.4.0.rc"
 
 from .celestrak import *
 from .gfz import *
