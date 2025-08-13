@@ -67,8 +67,8 @@ def get_file_age(swpath, relative=True):
 
 def update_data(
 	min_age="3h",
-	swpath_all=SW_PATH_ALL, swpath_5y=SW_PATH_5Y,
-	url_all=DL_URL_ALL, url_5y=DL_URL_5Y,
+	swpath_all=None, swpath_5y=None,
+	url_all=None, url_5y=None,
 ):
 	"""Update the local space weather index data
 
@@ -112,6 +112,11 @@ def update_data(
 			return
 		logging.info("updating '{0}'.".format(swpath))
 		_dl_file(swpath, url)
+
+	swpath_all = swpath_all or SW_PATH_ALL
+	swpath_5y = swpath_5y or SW_PATH_5Y
+	url_all = url_all or DL_URL_ALL
+	url_5y = url_5y or DL_URL_5Y
 
 	# Update the large file after four years
 	# to have some overlap with the 5-year data
@@ -254,7 +259,7 @@ def _doc_param(**sub):
 
 
 @_doc_param(params=_SW_COMMON_PARAMS)
-def sw_daily(swpath_all=SW_PATH_ALL, swpath_5y=SW_PATH_5Y, update=False, update_interval="30days"):
+def sw_daily(swpath_all=None, swpath_5y=None, update=False, update_interval="30days"):
 	"""Combined daily Ap, Kp, and f10.7 index values
 
 	Combines the "historic" and last-5-year data into one dataframe.
@@ -275,6 +280,9 @@ def sw_daily(swpath_all=SW_PATH_ALL, swpath_5y=SW_PATH_5Y, update=False, update_
 	--------
 	ap_kp_3h, read_sw
 	"""
+	swpath_all = swpath_all or SW_PATH_ALL
+	swpath_5y = swpath_5y or SW_PATH_5Y
+
 	# ensure that the file exists and is up to date
 	if (
 		not os.path.exists(swpath_all)

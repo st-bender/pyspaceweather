@@ -88,8 +88,8 @@ def get_gfz_age(gfzpath, relative=True):
 
 def update_gfz(
 	min_age="1d",
-	gfzpath_all=GFZ_PATH_ALL, gfzpath_30d=GFZ_PATH_30D,
-	url_all=GFZ_URL_ALL, url_30d=GFZ_URL_30D,
+	gfzpath_all=None, gfzpath_30d=None,
+	url_all=None, url_30d=None,
 ):
 	"""Update the local space weather index data
 
@@ -135,6 +135,11 @@ def update_gfz(
 		logging.info("updating '{0}'.".format(gfzpath))
 		_dl_file(gfzpath, url)
 
+	gfzpath_all = gfzpath_all or GFZ_PATH_ALL
+	gfzpath_30d = gfzpath_30d or GFZ_PATH_30D
+	url_all = url_all or GFZ_URL_ALL
+	url_30d = url_30d or GFZ_URL_30D
+
 	# Update the large file after 30 days
 	_update_file(gfzpath_all, url_all, "30days")
 	# Don't re-download before `min_age` has passed (1d)
@@ -143,8 +148,8 @@ def update_gfz(
 
 def update_gfz_hp30(
 	min_age="1d",
-	gfzpath_all=HP30_PATH_ALL, gfzpath_30d=HP30_PATH_30D,
-	url_all=HP30_URL_ALL, url_30d=HP30_URL_30D,
+	gfzpath_all=None, gfzpath_30d=None,
+	url_all=None, url_30d=None,
 ):
 	"""Updates the local Hp30 index data
 
@@ -152,6 +157,10 @@ def update_gfz_hp30(
 	--------
 	update_gfz
 	"""
+	gfzpath_all = gfzpath_all or HP30_PATH_ALL
+	gfzpath_30d = gfzpath_30d or HP30_PATH_30D
+	url_all = url_all or HP30_URL_ALL
+	url_30d = url_30d or HP30_URL_30D
 	return update_gfz(
 		min_age=min_age,
 		gfzpath_all=gfzpath_all, gfzpath_30d=gfzpath_30d,
@@ -161,8 +170,8 @@ def update_gfz_hp30(
 
 def update_gfz_hp60(
 	min_age="1d",
-	gfzpath_all=HP60_PATH_ALL, gfzpath_30d=HP60_PATH_30D,
-	url_all=HP60_URL_ALL, url_30d=HP60_URL_30D,
+	gfzpath_all=None, gfzpath_30d=None,
+	url_all=None, url_30d=None,
 ):
 	"""Updates the local Hp60 index data
 
@@ -170,6 +179,10 @@ def update_gfz_hp60(
 	--------
 	update_gfz
 	"""
+	gfzpath_all = gfzpath_all or HP60_PATH_ALL
+	gfzpath_30d = gfzpath_30d or HP60_PATH_30D
+	url_all = url_all or HP60_URL_ALL
+	url_30d = url_30d or HP60_URL_30D
 	return update_gfz(
 		min_age=min_age,
 		gfzpath_all=gfzpath_all, gfzpath_30d=gfzpath_30d,
@@ -454,8 +467,8 @@ def _doc_param(**sub):
 
 @_doc_param(params=_GFZ_COMMON_PARAMS)
 def gfz_daily(
-	gfzpath_all=GFZ_PATH_ALL,
-	gfzpath_30d=GFZ_PATH_30D,
+	gfzpath_all=None,
+	gfzpath_30d=None,
 	update=False,
 	update_interval="10days",
 	gfz_format=None,
@@ -480,6 +493,8 @@ def gfz_daily(
 	--------
 	gfz_3h, read_gfz
 	"""
+	gfzpath_all = gfzpath_all or GFZ_PATH_ALL
+	gfzpath_30d = gfzpath_30d or GFZ_PATH_30D
 	gfz_format = gfz_format or "gfz"
 	parse_func, update_func = _PARSERS[gfz_format.lower()]
 	# ensure that the file exists and is up to date
