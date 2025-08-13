@@ -88,15 +88,19 @@ def update_data(
 		The time after which a new download will be attempted.
 		The online data is updated every 3 hours, thus setting this value to
 		a shorter time is not needed and not recommended.
-	swpath_all: str, optional, default depending on package install location
+	swpath_all: `None` or str, optional, default `None`
 		Filename for the large combined index file including the
 		historic data, absolute path or relative to the current dir.
-	swpath_5y: str, optional, default depending on package install location
+		`None` uses the package's default file location.
+	swpath_5y: `None` or str, optional, default `None`
 		Filename for the 5-year index file, absolute path or relative to the current dir.
-	url_all: str, optional, default `sw.DL_URL_ALL`
+		`None` uses the package's default file location.
+	url_all: `None` or str, optional, default `None`
 		The url of the "historic" data file.
-	url_5y: str, optional, default `sw.DL_URL_5Y`
+		`None` uses the default url.
+	url_5y: `None` or str, optional, default `None`
 		The url of the data file of containing the indices of the last 5 years.
+		`None` uses the default url.
 
 	Returns
 	-------
@@ -236,11 +240,13 @@ def read_sw(swpath):
 _SW_COMMON_PARAMS = """
 Parameters
 ----------
-swpath_all: str, optional, default depending on package install location
+swpath_all: `None` or str, optional, default `None`
 	Filename for the large combined index file including the
 	historic data, absolute path or relative to the current dir.
-swpath_5y: str, optional, default depending on package install location
+	`None` uses the package's default file location.
+swpath_5y: `None` or str, optional, default `None`
 	Filename for the 5-year index file, absolute path or relative to the current dir.
+	`None` uses the package's default file location.
 update: bool, optional, default False
 	Attempt to update the local data if it is older than `update_interval`.
 update_interval: str, optional, default "30days"

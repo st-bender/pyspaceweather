@@ -109,16 +109,20 @@ def update_gfz(
 		The time after which a new download will be attempted.
 		The online data is updated every day, thus setting this value to
 		a shorter time is not needed and not recommended.
-	gfzpath_all: str, optional, default depending on package install location
+	gfzpath_all: `None` or str, optional, default `None`
 		Filename for the large combined index file including the
 		historic data, absolute path or relative to the current dir.
-	gfzpath_30d: str, optional, default depending on package install location
+		`None` uses the package's default file location.
+	gfzpath_30d: `None` or str, optional, default `None`
 		Filename for the 30-day (nowcast) index file, absolute path or relative
 		to the current dir.
-	url_all: str, optional, default `gfz.GFZ_URL_ALL`
+		`None` uses the package's default file location.
+	url_all: `None` or str, optional, default `None`
 		The url of the "historic" data file.
-	url_30d: str, optional, default `gfz.GFZ_URL_30D`
+		`None` uses the default url.
+	url_30d: `None` or str, optional, default `None`
 		The url of the data file containing the indices for the last 30 days.
+		`None` uses the default url.
 
 	Returns
 	-------
@@ -428,12 +432,14 @@ def read_gfz_wdc(gfzpath):
 _GFZ_COMMON_PARAMS = """
 Parameters
 ----------
-gfzpath_all: str, optional, default depending on package install location
+gfzpath_all: `None` or str, optional, default `None`
 	Filename for the large combined index file including the
 	historic data, absolute path or relative to the current dir.
-gfzpath_30d: str, optional, default depending on package install location
+	`None` uses the package's default file location.
+gfzpath_30d: `None` or str, optional, default `None`
 	Filename for the 30-day (nowcast) index file,
 	absolute path or relative to the current dir.
+	`None` uses the package's default file location.
 update: bool, optional, default False
 	Attempt to update the local data if it is older than `update_interval`.
 update_interval: str, optional, default "10days"
@@ -441,7 +447,7 @@ update_interval: str, optional, default "10days"
 	By default, no automatic re-download is initiated, set `update` to true.
 	The online data is updated every 3 hours, thus setting this value to
 	a shorter time is not needed and not recommended.
-gfz_format: str, optional, default `None`
+gfz_format: `None` or str, optional, default `None`
 	The file format to parse the files passed via `gfzpath_all` and `gfzpath_all`.
 	Use `None`, "default", "gfz", or "standard" for the "standard" GFZ ASCII files.
 	Use "wdc" to parse files in WDC format into a full-length `pandas.DataFrame`.
