@@ -96,6 +96,14 @@ _OMNI_MISSING = {
 }
 
 
+def _doc_param(**sub):
+	def dec(obj):
+		obj.__doc__ = obj.__doc__.format(**sub)
+		return obj
+	return dec
+
+
+@_doc_param(prefix=OMNI_PREFIX, ext=OMNI_EXT)
 def cache_omnie(
 	year,
 	prefix=None,
@@ -113,17 +121,19 @@ def cache_omnie(
 	----------
 	year: int
 		Year of the data.
-	prefix: str, optional
+	prefix: `None` or str, optional, default `None`
 		File prefix for constructing the file name as <prefix>_year.<ext>.
-		Defaults to 'omni2'.
-	ext: str, optional
+		`None` defaults to '{prefix}'.
+	ext: `None` or str, optional, default `None`
 		File extension for constructing the file name as <prefix>_year.<ext>.
-		Defaults to 'dat'.
-	local_path: str, optional
+		`None` defaults to '{ext}'.
+	local_path: `None` or str, optional, default `None`
 		Path to the locally stored data yearly files, defaults to the
 		data location within the package.
-	url_base: str, optional
+		`None` uses the package's default file location.
+	url_base: `None` or str, optional, default `None`
 		URL for the directory that contains the yearly files.
+		`None` uses the default base url.
 
 	Returns
 	-------
@@ -365,6 +375,7 @@ def read_omnie(omnie_file):
 	return sw_df
 
 
+@_doc_param(prefix=OMNI_PREFIX, ext=OMNI_EXT)
 def omnie_hourly(
 	year,
 	prefix=None,
@@ -384,15 +395,19 @@ def omnie_hourly(
 	----------
 	year: int
 		Year of the data.
-	prefix: str, optional, default 'omni2'
+	prefix: `None` or str, optional, default `None`
 		File prefix for constructing the file name as <prefix>_year.<ext>.
-	ext: str, optional, default 'dat'
+		`None` defaults to '{prefix}'.
+	ext: `None` or str, optional, default `None`
 		File extension for constructing the file name as <prefix>_year.<ext>.
-	local_path: str, optional
+		`None` defaults to '{ext}'.
+	local_path: `None` or str, optional, default `None`
 		Path to the locally stored data yearly files, defaults to the
 		data location within the package.
-	url_base: str, optional
+		`None` uses the package's default file location.
+	url_base: `None` or str, optional, default `None`
 		URL for the directory that contains the yearly files.
+		`None` uses the default base url.
 	cache: boolean, optional, default False
 		Download files locally if they are not already available.
 
