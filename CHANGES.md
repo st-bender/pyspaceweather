@@ -16,7 +16,7 @@ v0.4.0 (unreleased)
   for `pkg_resources`
 - Avoids inadvertently updating the local data files when running the test
   suite locally
-- Formatting fixes for the documentation
+- Updates and formatting fixes for the documentation
 
 ### Changes
 
