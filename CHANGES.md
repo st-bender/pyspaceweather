@@ -1,6 +1,15 @@
 Changelog
 =========
 
+v0.4.1 (unreleased)
+-------------------
+
+### Changes
+
+- Updates space weather indices from celestrak (observed until 2026-03-08)
+  to include the definitive values for 2025
+
+
 v0.4.0 (2025-08-15)
 -------------------
 
