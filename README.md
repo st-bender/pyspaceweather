@@ -210,8 +210,8 @@ by passing the Hp30 or Hp60 file locations and setting `gfz_format` to "hp30" or
 ```python
 >>> import spaceweather as sw
 >>> df_d = sw.gfz_daily(
-... 	gfzpath_all=sw.HP30_PATH_ALL,
-... 	gfzpath_30d=sw.HP30_PATH_30D,
+... 	gfzpath_all="./tests/Hp30_ap30_complete_series.txt",
+... 	gfzpath_30d="./tests/Hp30_ap30_nowcast.txt",
 ... 	gfz_format="hp30",
 ... )
 >>> df_d.loc["2025-07-01 00:15:00"]
