@@ -556,10 +556,12 @@ def gfz_3h(*args, **kwargs):
 	gfz_daily
 	"""
 	daily_df = gfz_daily(*args, **kwargs)
-	ret = daily_df.copy()
 	apns = list(map("Ap{0}".format, range(0, 23, 3)))
 	kpns = list(map("Kp{0}".format, range(0, 23, 3)))
+	ret = {}
 	for i, (ap, kp) in enumerate(zip(apns, kpns)):
+		ret[ap] = daily_df[ap]
+		ret[kp] = daily_df[kp]
 		ret[ap].index = daily_df[ap].index + pd.Timedelta((i * 3 + 1.5), unit="h")
 		ret[kp].index = daily_df[kp].index + pd.Timedelta((i * 3 + 1.5), unit="h")
 	gfz_ap = pd.concat(map(ret.__getitem__, apns))
