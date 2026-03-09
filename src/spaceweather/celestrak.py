@@ -1,4 +1,4 @@
-# Copyright (c) 2020--2022 Stefan Bender
+# Copyright (c) 2020--2026 Stefan Bender
 #
 # This module is part of pyspaceweather.
 # pyspaceweather is free software: you can redistribute it or modify
