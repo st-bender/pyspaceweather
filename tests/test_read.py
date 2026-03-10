@@ -38,7 +38,7 @@ def test_age():
 		fage0 = get_file_age(p)
 		fage1 = now - get_file_age(p, relative=False)
 		assert (fage0 > pd.Timedelta("3h")) == (fage1 > pd.Timedelta("3h"))
-		assert (fage0 > pd.Timedelta("1d")) == (fage1 > pd.Timedelta("1d"))
+		assert (fage0 > pd.Timedelta("1D")) == (fage1 > pd.Timedelta("1D"))
 
 
 def _assert_age(p, age):
@@ -67,7 +67,7 @@ def test_auto_update(mocker, tmpdir):
 	update_data(swpath_5y=os.path.join(tmpdir, "foo.dat"))
 	requests.get.assert_called_with(DL_URL_5Y, stream=True)
 	# Should update the last-5-year data
-	sw_daily(update=True, update_interval="1d")
+	sw_daily(update=True, update_interval="1D")
 	requests.get.assert_called_with(DL_URL_5Y, stream=True)
 	with pytest.warns(UserWarning):
 		sw_daily(update=False, update_interval="0h")

@@ -87,7 +87,7 @@ def get_gfz_age(gfzpath, relative=True):
 
 
 def update_gfz(
-	min_age="1d",
+	min_age="1D",
 	gfzpath_all=None, gfzpath_30d=None,
 	url_all=None, url_30d=None,
 ):
@@ -105,7 +105,7 @@ def update_gfz(
 
 	Parameters
 	----------
-	min_age: str, optional, default "1d"
+	min_age: str, optional, default "1D"
 		The time after which a new download will be attempted.
 		The online data is updated every day, thus setting this value to
 		a shorter time is not needed and not recommended.
@@ -151,7 +151,7 @@ def update_gfz(
 
 
 def update_gfz_hp30(
-	min_age="1d",
+	min_age="1D",
 	gfzpath_all=None, gfzpath_30d=None,
 	url_all=None, url_30d=None,
 ):
@@ -173,7 +173,7 @@ def update_gfz_hp30(
 
 
 def update_gfz_hp60(
-	min_age="1d",
+	min_age="1D",
 	gfzpath_all=None, gfzpath_30d=None,
 	url_all=None, url_30d=None,
 ):

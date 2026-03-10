@@ -47,12 +47,12 @@ def test_age():
 		fage0 = get_gfz_age(p)
 		fage1 = now - get_gfz_age(p, relative=False)
 		assert (fage0 > pd.Timedelta("3h")) == (fage1 > pd.Timedelta("3h"))
-		assert (fage0 > pd.Timedelta("1d")) == (fage1 > pd.Timedelta("1d"))
+		assert (fage0 > pd.Timedelta("1D")) == (fage1 > pd.Timedelta("1D"))
 
 
 def test_update(mocker):
 	mocker.patch("requests.get")
-	update_gfz(min_age="1d", gfzpath_all=GFZ_PATH_ALL, gfzpath_30d=GFZ_PATH_30D)
+	update_gfz(min_age="1D", gfzpath_all=GFZ_PATH_ALL, gfzpath_30d=GFZ_PATH_30D)
 	requests.get.assert_called_with(GFZ_URL_30D, stream=True)
 
 
@@ -65,7 +65,7 @@ def test_auto_update(mocker, tmpdir):
 	# Should update the last-5-year data
 	gfz_daily(
 		gfzpath_all=GFZ_PATH_ALL, gfzpath_30d=GFZ_PATH_30D,
-		update=True, update_interval="1d",
+		update=True, update_interval="1D",
 	)
 	requests.get.assert_called_with(GFZ_URL_30D, stream=True)
 	with pytest.warns(UserWarning):
@@ -141,7 +141,7 @@ def test_auto_update_hp(fpall, fp30d, url, mocker, request):
 	# Should update the last-5-year data
 	gfz_daily(
 		gfzpath_all=fpall, gfzpath_30d=fp30d,
-		update=True, update_interval="1d",
+		update=True, update_interval="1D",
 		gfz_format=_gfz_fmt,
 	)
 	requests.get.assert_called_with(url, stream=True)
