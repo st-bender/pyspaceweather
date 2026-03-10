@@ -212,6 +212,9 @@ Name: 2025-07-01 00:30:00, dtype: float64
 
 To get a complete combined historic and nowcast dataset, use `sw.gfz_daily()`
 by passing the Hp30 or Hp60 file locations and setting `gfz_format` to "hp30" or "hp60".
+The standard file locations for the package data (i.e. when files are downloaded
+automatically) are available through `sw.HP30_PATH_ALL` and `sw.HP30_PATH_30D`
+for the hp30 complete and nowcast indexes, and analogous for hp60.
 
 ```python
 >>> import spaceweather as sw
