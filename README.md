@@ -140,14 +140,20 @@ The interface is mostly the same as for the "Celestrak" data:
 
 ```python
 >>> import spaceweather as sw
+>>> # Replaces the standard locations with the test files for doctest,
+>>> # otherwise the package tries to download non-existent files as
+>>> # the GFZ data are not included in the package.
+>>> # Remove the following 2 lines for real applications.
+>>> sw.gfz.GFZ_PATH_ALL = "./tests/Kp_ap_Ap_SN_F107_since_2024.txt"
+>>> sw.gfz.GFZ_PATH_30D = "./tests/Kp_ap_Ap_SN_F107_nowcast.txt"
 >>> df_d = sw.gfz_daily()
->>> print(df_d.loc["2000-01-01"].Apavg)
-30.0
+>>> print(df_d.loc["2024-01-01"].Apavg)
+10.0
 >>> df_3h = sw.gfz_3h()
->>> df_3h.loc["2000-01-01 01:30:00"]
-Ap    56.000
-Kp     5.333
-Name: 2000-01-01 01:30:00, dtype: float64
+>>> df_3h.loc["2024-01-01 01:30:00"]
+Ap    3.000
+Kp    0.667
+Name: 2024-01-01 01:30:00, dtype: float64
 
 ```
 
