@@ -61,7 +61,7 @@ def get_file_age(swpath, relative=True):
 				break
 	upd = pd.to_datetime(line.lstrip("UPDATED"), utc=True)
 	if relative:
-		return pd.Timestamp.utcnow() - upd
+		return pd.Timestamp.now("UTC") - upd
 	return upd
 
 

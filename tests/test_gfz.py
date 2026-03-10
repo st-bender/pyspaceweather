@@ -41,7 +41,7 @@ def df_3h():
 
 
 def test_age():
-	now = pd.Timestamp.utcnow()
+	now = pd.Timestamp.now("UTC")
 	for p in [GFZ_PATH_ALL, GFZ_PATH_30D]:
 		assert os.path.exists(p)
 		fage0 = get_gfz_age(p)

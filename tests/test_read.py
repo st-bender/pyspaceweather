@@ -32,7 +32,7 @@ def df_3h():
 
 
 def test_age():
-	now = pd.Timestamp.utcnow()
+	now = pd.Timestamp.now("UTC")
 	for p in [SW_PATH_ALL, SW_PATH_5Y]:
 		assert os.path.exists(p)
 		fage0 = get_file_age(p)

@@ -82,7 +82,7 @@ def get_gfz_age(gfzpath, relative=True):
 			pass
 	upd = pd.to_datetime(line[:10].replace(" ", "-"), utc=True)
 	if relative:
-		return pd.Timestamp.utcnow() - upd
+		return pd.Timestamp.now("UTC") - upd
 	return upd
 
 
