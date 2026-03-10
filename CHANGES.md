@@ -12,6 +12,7 @@ v0.4.1 (unreleased)
 ### Fixes
 
 - Compatibility with pandas' copy-on-write for daily to 3-h index conversion
+- Fixes some pandas' deprecation warnings
 - Rework doctests to avoid automatic downloads
 
 
