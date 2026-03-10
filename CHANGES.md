@@ -9,6 +9,11 @@ v0.4.1 (unreleased)
 - Updates space weather indices from celestrak (observed until 2026-03-08)
   to include the definitive values for 2025
 
+### Fixes
+
+- Compatibility with pandas' copy-on-write for daily to 3-h index conversion
+- Rework doctests to avoid automatic downloads
+
 
 v0.4.0 (2025-08-15)
 -------------------
