@@ -9,7 +9,7 @@
 
 Celestrak space weather indices file parser for python [#]_.
 
-.. [#] https://celestrak.com/SpaceData/
+.. [#] https://celestrak.org/SpaceData/
 """
 import os
 import logging
@@ -26,8 +26,8 @@ __all__ = [
 	"SW_PATH_ALL", "SW_PATH_5Y",
 ]
 
-DL_URL_ALL = "https://celestrak.com/SpaceData/SW-All.txt"
-DL_URL_5Y = "https://celestrak.com/SpaceData/SW-Last5Years.txt"
+DL_URL_ALL = "https://celestrak.org/SpaceData/SW-All.txt"
+DL_URL_5Y = "https://celestrak.org/SpaceData/SW-Last5Years.txt"
 SW_FILE_ALL = os.path.basename(DL_URL_ALL)
 SW_FILE_5Y = os.path.basename(DL_URL_5Y)
 SW_PATH_ALL = _resource_filepath(SW_FILE_ALL)
@@ -80,7 +80,7 @@ def update_data(
 	All arguments are optional and changing them from the defaults should not
 	be required neither should it be necessary nor is it recommended.
 
-	.. [#] https://celestrak.com/SpaceData/
+	.. [#] https://celestrak.org/SpaceData/
 
 	Parameters
 	----------
