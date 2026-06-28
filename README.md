@@ -12,7 +12,7 @@
 [![scrutinizer](https://scrutinizer-ci.com/g/st-bender/pyspaceweather/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/st-bender/pyspaceweather/?branch=master)
 
 This python module interfaces the space weather data available at
-<https://celestrak.com/SpaceData/>,
+<https://celestrak.org/SpaceData/>,
 <https://kp.gfz-potsdam.de/en/data>,
 and <https://omniweb.gsfc.nasa.gov/ow.html>.
 It includes the geomagnetic Ap and Kp indices, both the 3h values and
@@ -97,7 +97,7 @@ by calling
 ### Celestrak
 
 The module provides two functions to access the data from
-[Celestrak](https://celestrak.com/SpaceData/),
+[Celestrak](https://celestrak.org/SpaceData/),
 `sw_daily()` for the daily data
 as available from the website, and `ap_kp_3h()` for the 3h Ap and Kp values.
 Both functions return `pandas.DataFrame`s.
@@ -295,13 +295,13 @@ or [online version](http://www.gnu.org/licenses/gpl-2.0.html).
 
 ### Celestrak
 
-The "celestrak" data can be found at <https://celestrak.com/SpaceData/>
+The "celestrak" data can be found at <https://celestrak.org/SpaceData/>
 and is included with kind permission from Dr. T.S. Kelso at
-[celestrak](https://celestrak.com),
+[celestrak](https://celestrak.org),
 for details see the included [COPYING.data](COPYING.data) file.
 
 The data sources and file format are described at
-<http://celestrak.com/SpaceData/SpaceWx-format.php>
+<http://celestrak.org/SpaceData/SpaceWx-format.php>
 (see [file_format.txt](file_format.txt) for a local copy of the format description).
 
 ### GFZ
