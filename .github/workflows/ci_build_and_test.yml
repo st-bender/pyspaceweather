@@ -72,6 +72,9 @@ jobs:
       - name: Upload coverage report
         uses: codecov/codecov-action@v3
 
+      - name: Trust Coveralls Homebrew tap (Homebrew 6 requirement)
+        if: runner.os == 'macOS'
+        run: brew trust coverallsapp/coveralls
       - name: Upload to Coveralls
         uses: coverallsapp/github-action@v2
         with:
