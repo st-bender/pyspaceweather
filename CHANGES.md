@@ -1,6 +1,19 @@
 Changelog
 =========
 
+v0.4.2 (2026-07-01)
+-------------------
+
+### Changes
+
+- Updates space weather indices from celestrak (observed until 2026-06-30)
+
+### Fixes
+
+- `celestrak`'s domain changed from `.com` to `.org`
+  (https://github.com/st-bender/pyspaceweather/issues/5)
+
+
 v0.4.1 (2026-03-10)
 -------------------
 
